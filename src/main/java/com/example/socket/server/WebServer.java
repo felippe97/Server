@@ -12,17 +12,16 @@ public class WebServer {
      * žiadosť pre HttpWorkers.
      */
     public static void main(String args[]){
-    	// Maximálna dĺžka frontu pre prichádzajúce pripojenie
-        int queue_len = 6;
+    	
      // Číslo portu pre požiadavku http
         int port = 8888;
      // Odkaz na klientsky soket
         Socket socket;
- 
+
         try{
         	// Soket servera
-            ServerSocket servsocket = new ServerSocket(port, queue_len);
-            System.out.println("Web Server is starting up, listening at port " + port + ".");
+            ServerSocket servsocket = new ServerSocket(port);
+            System.out.println("Web Server is starting up, listening at port " + port);
             System.out.println("http://localhost:8888");
  
             while(true){
@@ -32,19 +31,19 @@ public class WebServer {
                 BufferedReader reader =new BufferedReader(new InputStreamReader(socket.getInputStream()));
  
                 // Priraďte požiadavky http k HttpWorker
-                String req = "";
+                String request = "";
                 String clientRequest = "";
                 while ((clientRequest = reader.readLine()) != null) {
-                    if (req.equals("")) {
-                        req  = clientRequest;
+                    if (request.equals("")) {
+                    	request  = clientRequest;
                     }
                     if (clientRequest.equals("")) { // Ak je koniec http žiadosti, break 
                         break;
                     }
                 }
  
-                if (req != null && !req.equals("")) {
-                    new Worker(req, socket).start();
+                if (request != null && !request.equals("")) {
+                    new Worker(request, socket).start();
                 }
             }
         }
