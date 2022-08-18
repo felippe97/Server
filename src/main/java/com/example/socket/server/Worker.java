@@ -106,8 +106,8 @@ class Worker extends Thread {
  
     /**
      * Handle CGI(fake) request
-     * @param req, get request from client
-     * @param printer, output printer
+     * req, get request from client
+     *  printer, output printer
      */
     private void handleCGIRequest(String req, PrintStream printer) throws UnsupportedEncodingException {
         // Parse the url to key-value pair
