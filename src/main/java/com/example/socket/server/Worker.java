@@ -186,25 +186,25 @@ class Worker extends Thread {
      *  printer, výstupná printer
      */
     private void handleExploreRequest(String req, PrintStream printer) {
-        // Get the root folder of the webserver
+        // Získa koreňový priečinok webserver
         String rootDir = getRootFolder();
-        // Get the real file path
+        //Získa skutočnú cestu k súboru
         String path = Paths.get(rootDir, req).toString();
-        // Try to open the directory
+        // Vyskúša otvoriť directory
         File file = new File (path) ;
-        if (!file.exists()) { // If the directory does not exist
+        if (!file.exists()) { // Ak adresár directory neexistuje
             printer.println("No such resource:" + req);
             Log.write(">> No such resource:" + req);
         }
-        else { // If exists
+        else { // Keď existuje
             Log.write(">> Explore the content under folder: " + file.getName());
-            // Get all the files and directory under current directory
+            // Získa všetky súbory a adresár v aktuálnom adresári
             File[] files = file.listFiles();
             Arrays.sort(files);
  
-            // Build file/directory structure in html format
+            //Vytvorý štruktúru súborov/adresárov vo formáte html
             StringBuilder sbDirHtml = new StringBuilder();
-            // Title line
+            // Titulný riadok
             sbDirHtml.append("<table>");
             sbDirHtml.append("<tr>");
             sbDirHtml.append("  <th>Name</th>");
@@ -212,13 +212,13 @@ class Worker extends Thread {
             sbDirHtml.append("  <th>Size(Bytes)</th>");
             sbDirHtml.append("</tr>");
  
-            // Parent folder, show it if current directory is not root
+            // Nadradený priečinok, zobrazi ho, ak aktuálny adresár nie je root
             if (!path.equals(rootDir)) {
                 String parent = path.substring(0, path.lastIndexOf(File.separator));
                 if (parent.equals(rootDir)) { // The first level
                     parent = "../";
                 }
-                else { // The second or deeper levels
+                else { // Druhá alebo hlbšia úroveň
                     parent = parent.replace(rootDir, "");
                 }
                 // Replace backslash to slash
