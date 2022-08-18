@@ -20,13 +20,13 @@ public class WebServer {
 
         try{
         	// Soket servera
-            ServerSocket servsocket = new ServerSocket(port);
+            ServerSocket servSocket = new ServerSocket(port);
             System.out.println("Web Server is starting up, listening at port " + port);
             System.out.println("http://localhost:8888");
  
             while(true){
                 //Serverový soket čaká na požiadavku klienta
-                socket = servsocket.accept();
+                socket = servSocket.accept();
                 // Lokálny reader od klienta
                 BufferedReader reader =new BufferedReader(new InputStreamReader(socket.getInputStream()));
  
