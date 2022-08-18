@@ -10,13 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Log {
-    private static final String FILE_LOG = "WebServerLogs.txt";
+    private static final String fileLog = "WebServerLogs.txt";
     private static List<String> logs = new LinkedList<String>();
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat simpleDataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
  
     /**
      * Zapíšte log do zoznamu miestneho úložiska
-     * @param log, obsah denníka
+     * log obsah denníka
      */
     public static void write(String log) {
         write(log, true);
@@ -24,11 +24,11 @@ public class Log {
  
     /**
      * Zapíšte log do zoznamu miestneho úložiska
-     * @param log, obsah denníka
-     * @param print, print to screen
+     *  log, obsah denníka
+     *  print, print to screen
      */
     public static void write(String log, boolean print) {
-        String message = sdf.format(new Date()) + " " + log;
+        String message = simpleDataFormat.format(new Date()) + " " + log;
         // Uložte nový log
         logs.add(message);
  
@@ -40,14 +40,14 @@ public class Log {
  
     /**
      * Uloži protokoly do určeného súboru
-     * @param pripojiť, true je pripojiť, false je prepísať
+     * pripojiť, true je pripojiť, false je prepísať
      */
     public static void save(boolean append) {
         try {
             if (logs!=null && logs.size()>0) {
  
                 // Otvorí log
-                FileWriter fileWriterLog = new FileWriter(FILE_LOG, append);
+                FileWriter fileWriterLog = new FileWriter(fileLog, append);
  
                 // Používateľ BufferedWriter na pridanie nového riadku
                 BufferedWriter bufferedWriterLog = new BufferedWriter(fileWriterLog);
@@ -65,7 +65,7 @@ public class Log {
             }
         }
         catch(FileNotFoundException ex) {
-            System.out.println("Unable to open file '" + FILE_LOG + "'");
+            System.out.println("Unable'" + fileLog + "'");
         }
         catch(IOException ex) {
             ex.printStackTrace();
