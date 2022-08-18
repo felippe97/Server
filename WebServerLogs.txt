@@ -435,3 +435,329 @@
 2022-08-18 14:44:12 Http Worker is working...
 2022-08-18 14:44:12 GET /favicon.ico HTTP/1.1
 2022-08-18 14:44:12 >> No such resource:/favicon.ico
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 GET / HTTP/1.1
+2022-08-18 16:09:55 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:09:55 >> Explore the content under folder: server
+2022-08-18 16:09:55 >>> Directory: .git
+2022-08-18 16:09:55 >>> Directory: .settings
+2022-08-18 16:09:55 >>> Directory: src
+2022-08-18 16:09:55 >>> Directory: target
+2022-08-18 16:09:55 >>> File: .classpath
+2022-08-18 16:09:55 >>> File: .gitattributes
+2022-08-18 16:09:55 >>> File: .project
+2022-08-18 16:09:55 >>> File: pom.xml
+2022-08-18 16:09:55 >>> File: WebServerLogs.txt
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 >> No such resource:/images/xml.png
+2022-08-18 16:09:55 GET /images/text.png HTTP/1.1
+2022-08-18 16:09:55 >> No such resource:/images/text.png
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 >> No such resource:/images/xml.png
+2022-08-18 16:09:55 GET /images/text.png HTTP/1.1
+2022-08-18 16:09:55 >> No such resource:/images/text.png
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 GET /images/folder.png HTTP/1.1
+2022-08-18 16:09:55 >> No such resource:/images/folder.png
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 >> No such resource:/images/xml.png
+2022-08-18 16:09:55 GET /images/text.png HTTP/1.1
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 >> No such resource:/images/xml.png
+2022-08-18 16:09:55 GET /images/text.png HTTP/1.1
+2022-08-18 16:09:55 >> No such resource:/images/text.png
+2022-08-18 16:09:55 
+2022-08-18 16:09:55 Http Worker is working...
+2022-08-18 16:09:55 GET /favicon.ico HTTP/1.1
+2022-08-18 16:09:55 >> No such resource:/favicon.ico
+2022-08-18 16:17:24 
+2022-08-18 16:17:24 Http Worker is working...
+2022-08-18 16:17:24 GET / HTTP/1.1
+2022-08-18 16:17:24 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:17:24 >> Explore the content under folder: server
+2022-08-18 16:17:24 >>> Directory: .git
+2022-08-18 16:17:24 >>> Directory: .settings
+2022-08-18 16:17:24 >>> Directory: images
+2022-08-18 16:17:24 >>> Directory: src
+2022-08-18 16:17:24 >>> Directory: target
+2022-08-18 16:17:24 >>> File: .classpath
+2022-08-18 16:17:24 >>> File: .gitattributes
+2022-08-18 16:17:24 >>> File: .project
+2022-08-18 16:17:24 >>> File: pom.xml
+2022-08-18 16:17:24 >>> File: WebServerLogs.txt
+2022-08-18 16:17:24 GET /images/xml.png HTTP/1.1
+2022-08-18 16:17:24 
+2022-08-18 16:17:24 Http Worker is working...
+2022-08-18 16:17:24 GET /images/text.png HTTP/1.1
+2022-08-18 16:17:24 >> No such resource:/images/xml.png
+2022-08-18 16:17:24 >> No such resource:/images/text.png
+2022-08-18 16:17:24 GET /images/xml.png HTTP/1.1
+2022-08-18 16:17:24 
+2022-08-18 16:17:24 Http Worker is working...
+2022-08-18 16:17:24 GET /images/text.png HTTP/1.1
+2022-08-18 16:17:24 >> No such resource:/images/xml.png
+2022-08-18 16:17:24 >> No such resource:/images/text.png
+2022-08-18 16:17:24 GET /images/xml.png HTTP/1.1
+2022-08-18 16:17:24 
+2022-08-18 16:17:24 Http Worker is working...
+2022-08-18 16:17:24 GET /images/text.png HTTP/1.1
+2022-08-18 16:17:24 >> No such resource:/images/xml.png
+2022-08-18 16:17:24 >> No such resource:/images/text.png
+2022-08-18 16:17:25 Http Worker is working...
+2022-08-18 16:17:25 GET /images/xml.png HTTP/1.1
+2022-08-18 16:17:25 
+2022-08-18 16:17:25 Http Worker is working...
+2022-08-18 16:17:25 GET /images/text.png HTTP/1.1
+2022-08-18 16:17:25 >> No such resource:/images/xml.png
+2022-08-18 16:17:25 >> No such resource:/images/text.png
+2022-08-18 16:17:25 Http Worker is working...
+2022-08-18 16:17:25 GET /images/xml.png HTTP/1.1
+2022-08-18 16:17:25 
+2022-08-18 16:17:25 Http Worker is working...
+2022-08-18 16:17:25 GET /images/text.png HTTP/1.1
+2022-08-18 16:17:25 >> No such resource:/images/xml.png
+2022-08-18 16:17:25 >> No such resource:/images/text.png
+2022-08-18 16:17:25 
+2022-08-18 16:17:25 Http Worker is working...
+2022-08-18 16:17:25 GET /favicon.ico HTTP/1.1
+2022-08-18 16:17:25 >> No such resource:/favicon.ico
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 GET / HTTP/1.1
+2022-08-18 16:20:16 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:20:16 >> Explore the content under folder: server
+2022-08-18 16:20:16 >>> Directory: .git
+2022-08-18 16:20:16 >>> Directory: .settings
+2022-08-18 16:20:16 >>> Directory: images
+2022-08-18 16:20:16 >>> Directory: src
+2022-08-18 16:20:16 >>> Directory: target
+2022-08-18 16:20:16 >>> File: .classpath
+2022-08-18 16:20:16 >>> File: .gitattributes
+2022-08-18 16:20:16 >>> File: .project
+2022-08-18 16:20:16 >>> File: pom.xml
+2022-08-18 16:20:16 >>> File: WebServerLogs.txt
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 GET /images/xml.png HTTP/1.1
+2022-08-18 16:20:16 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:16 >> No such resource:/images/xml.png
+2022-08-18 16:20:16 >> No such resource:/images/text.png
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 GET /images/xml.png HTTP/1.1
+2022-08-18 16:20:16 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:16 >> No such resource:/images/xml.png
+2022-08-18 16:20:16 >> No such resource:/images/text.png
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 GET /images/xml.png HTTP/1.1
+2022-08-18 16:20:16 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:16 >> No such resource:/images/xml.png
+2022-08-18 16:20:16 >> No such resource:/images/text.png
+2022-08-18 16:20:16 
+2022-08-18 16:20:16 Http Worker is working...
+2022-08-18 16:20:16 GET /favicon.ico HTTP/1.1
+2022-08-18 16:20:16 >> No such resource:/favicon.ico
+2022-08-18 16:20:20 
+2022-08-18 16:20:20 Http Worker is working...
+2022-08-18 16:20:20 GET / HTTP/1.1
+2022-08-18 16:20:20 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:20:20 >> Explore the content under folder: server
+2022-08-18 16:20:20 >>> Directory: .git
+2022-08-18 16:20:20 >>> Directory: .settings
+2022-08-18 16:20:20 >>> Directory: images
+2022-08-18 16:20:20 >>> Directory: src
+2022-08-18 16:20:20 >>> Directory: target
+2022-08-18 16:20:20 >>> File: .classpath
+2022-08-18 16:20:20 >>> File: .gitattributes
+2022-08-18 16:20:20 >>> File: .project
+2022-08-18 16:20:20 >>> File: pom.xml
+2022-08-18 16:20:20 >>> File: WebServerLogs.txt
+2022-08-18 16:20:20 
+2022-08-18 16:20:20 Http Worker is working...
+2022-08-18 16:20:20 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:20 >> No such resource:/images/xml.png
+2022-08-18 16:20:20 >> No such resource:/images/text.png
+2022-08-18 16:20:20 
+2022-08-18 16:20:20 Http Worker is working...
+2022-08-18 16:20:20 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:20 >> No such resource:/images/xml.png
+2022-08-18 16:20:20 >> No such resource:/images/text.png
+2022-08-18 16:20:20 
+2022-08-18 16:20:20 Http Worker is working...
+2022-08-18 16:20:20 GET /images/text.png HTTP/1.1
+2022-08-18 16:20:20 >> No such resource:/images/xml.png
+2022-08-18 16:20:20 >> No such resource:/images/text.png
+2022-08-18 16:20:20 
+2022-08-18 16:20:20 Http Worker is working...
+2022-08-18 16:20:20 GET /favicon.ico HTTP/1.1
+2022-08-18 16:20:20 >> No such resource:/favicon.ico
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 GET / HTTP/1.1
+2022-08-18 16:21:00 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:21:00 >> Explore the content under folder: server
+2022-08-18 16:21:00 >>> Directory: .git
+2022-08-18 16:21:00 >>> Directory: .settings
+2022-08-18 16:21:00 >>> Directory: images
+2022-08-18 16:21:00 >>> Directory: src
+2022-08-18 16:21:00 >>> Directory: target
+2022-08-18 16:21:00 >>> File: .classpath
+2022-08-18 16:21:00 >>> File: .gitattributes
+2022-08-18 16:21:00 >>> File: .project
+2022-08-18 16:21:00 >>> File: pom.xml
+2022-08-18 16:21:00 >>> File: WebServerLogs.txt
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:00 >> No such resource:/images/xml.png
+2022-08-18 16:21:00 >> No such resource:/images/text.png
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:00 >> No such resource:/images/xml.png
+2022-08-18 16:21:00 >> No such resource:/images/text.png
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:00 >> No such resource:/images/xml.png
+2022-08-18 16:21:00 >> No such resource:/images/text.png
+2022-08-18 16:21:00 
+2022-08-18 16:21:00 Http Worker is working...
+2022-08-18 16:21:00 GET /favicon.ico HTTP/1.1
+2022-08-18 16:21:00 >> No such resource:/favicon.ico
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET / HTTP/1.1
+2022-08-18 16:21:01 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:21:01 >> Explore the content under folder: server
+2022-08-18 16:21:01 >>> Directory: .git
+2022-08-18 16:21:01 >>> Directory: .settings
+2022-08-18 16:21:01 >>> Directory: images
+2022-08-18 16:21:01 >>> Directory: src
+2022-08-18 16:21:01 >>> Directory: target
+2022-08-18 16:21:01 >>> File: .classpath
+2022-08-18 16:21:01 >>> File: .gitattributes
+2022-08-18 16:21:01 >>> File: .project
+2022-08-18 16:21:01 >>> File: pom.xml
+2022-08-18 16:21:01 >>> File: WebServerLogs.txt
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 GET /images/file.png HTTP/1.1
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 GET /images/file.png HTTP/1.1
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 GET /images/file.png HTTP/1.1
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /favicon.ico HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/favicon.ico
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET / HTTP/1.1
+2022-08-18 16:21:01 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:21:01 >> Explore the content under folder: server
+2022-08-18 16:21:01 >>> Directory: .git
+2022-08-18 16:21:01 >>> Directory: .settings
+2022-08-18 16:21:01 >>> Directory: images
+2022-08-18 16:21:01 >>> Directory: src
+2022-08-18 16:21:01 >>> Directory: target
+2022-08-18 16:21:01 >>> File: .classpath
+2022-08-18 16:21:01 >>> File: .gitattributes
+2022-08-18 16:21:01 >>> File: .project
+2022-08-18 16:21:01 >>> File: pom.xml
+2022-08-18 16:21:01 >>> File: WebServerLogs.txt
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/xml.png HTTP/1.1
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /images/text.png HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/images/xml.png
+2022-08-18 16:21:01 >> No such resource:/images/text.png
+2022-08-18 16:21:01 
+2022-08-18 16:21:01 Http Worker is working...
+2022-08-18 16:21:01 GET /favicon.ico HTTP/1.1
+2022-08-18 16:21:01 >> No such resource:/favicon.ico
+2022-08-18 16:21:23 
+2022-08-18 16:21:23 Http Worker is working...
+2022-08-18 16:21:23 GET / HTTP/1.1
+2022-08-18 16:21:23 > This is a [DIRECTORY EXPLORE] request..
+2022-08-18 16:21:23 >> Explore the content under folder: server
+2022-08-18 16:21:23 >>> Directory: .git
+2022-08-18 16:21:23 >>> Directory: .settings
+2022-08-18 16:21:23 >>> Directory: images
+2022-08-18 16:21:23 >>> Directory: src
+2022-08-18 16:21:23 >>> Directory: target
+2022-08-18 16:21:23 >>> File: .classpath
+2022-08-18 16:21:23 >>> File: .gitattributes
+2022-08-18 16:21:23 >>> File: .project
+2022-08-18 16:21:23 >>> File: pom.xml
+2022-08-18 16:21:23 >>> File: WebServerLogs.txt
+2022-08-18 16:21:23 
+2022-08-18 16:21:23 Http Worker is working...
+2022-08-18 16:21:23 GET /images/file.png HTTP/1.1
+2022-08-18 16:21:23 
+2022-08-18 16:21:23 Http Worker is working...
+2022-08-18 16:21:23 GET /favicon.ico HTTP/1.1
+2022-08-18 16:21:23 >> No such resource:/favicon.ico
