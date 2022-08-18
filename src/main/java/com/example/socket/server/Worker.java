@@ -473,9 +473,9 @@ class Worker extends Thread {
     }
  
     /**
-     * Get MIME type according to file extension
-     * @param path, file path
-     * @return, MIME type
+     * Získa typ MIME podľa prípony súboru
+     * cesta, cesta k súboru
+     * return typ MIME
      */
     private static String getContentType(String path) {
         if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
@@ -499,9 +499,9 @@ class Worker extends Thread {
     }
  
     /**
-     * Parse string to integer, return null if unable to convert
-     * @param text, string value
-     * @return, integer value
+     * Analyzuje reťazec na celé číslo, ak nie je možné konvertovať, vráť hodnotu null
+     * text, hodnota reťazca
+     * return celočíselná hodnota
      */
     private Integer tryParse(String text) {
         try {
