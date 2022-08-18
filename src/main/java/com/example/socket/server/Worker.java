@@ -185,16 +185,16 @@ class Worker extends Thread {
      * req, získajte požiadavku od klienta
      *  printer, výstupná printer
      */
-    private void handleExploreRequest(String req, PrintStream printer) {
+    private void handleExploreRequest(String request, PrintStream printer) {
         // Získa koreňový priečinok webserver
         String rootDir = getRootFolder();
         //Získa skutočnú cestu k súboru
-        String path = Paths.get(rootDir, req).toString();
+        String path = Paths.get(rootDir, request).toString();
         // Vyskúša otvoriť directory
         File file = new File (path) ;
         if (!file.exists()) { // Ak adresár directory neexistuje
-            printer.println("No such resource:" + req);
-            Log.write(">> No such resource:" + req);
+            printer.println("No such resource:" + request);
+            Log.write(">> No such resource:" + request);
         }
         else { // Keď existuje
             Log.write(">> Explore the content under folder: " + file.getName());
@@ -225,7 +225,7 @@ class Worker extends Thread {
                 parent = parent.replace("\\", "/");
                 // Rodičovská line
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/xfile.png")+"\"></img><a href=\"" + parent +"\">../</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(request,"images/xfile.png")+"\"></img><a href=\"" + parent +"\">../</a></td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("</tr>");
@@ -236,7 +236,7 @@ class Worker extends Thread {
             for (File folder: folders) {
                 Log.write(">>> Directory: " + folder.getName());
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/xfile.png")+"\"></img><a href=\""+buildRelativeLink(req, folder.getName())+"\">"+folder.getName()+"</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(request,"images/xfile.png")+"\"></img><a href=\""+buildRelativeLink(request, folder.getName())+"\">"+folder.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("</tr>");
@@ -246,7 +246,7 @@ class Worker extends Thread {
             for (File f: fileList) {
                 Log.write(">>> File: " + f.getName());
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req, getFileImage(f.getName()))+"\" width=\"20\"></img><a href=\""+buildRelativeLink(req, f.getName())+"\">"+f.getName()+"</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(request, getFileImage(f.getName()))+"\" width=\"20\"></img><a href=\""+buildRelativeLink(request, f.getName())+"\">"+f.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(f.lastModified()) + "</td>");
                 sbDirHtml.append("  <td>" + f.length() + "</td>");
                 sbDirHtml.append("</tr>");
