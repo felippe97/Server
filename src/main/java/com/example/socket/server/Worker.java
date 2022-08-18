@@ -203,7 +203,7 @@ class Worker extends Thread {
             Arrays.sort(files);
  
             //Vytvorý štruktúru súborov/adresárov vo formáte html
-            StringBuilder sbDirHtml = new StringBuilder();
+            StringBuilder sbDirHtml = new StringBuilder(); // StringBuilder v jazyku Java predstavuje meniteľnú sekvenciu znakov
             // Titulný riadok
             sbDirHtml.append("<table>");
             sbDirHtml.append("<tr>");
@@ -215,38 +215,38 @@ class Worker extends Thread {
             // Nadradený priečinok, zobrazi ho, ak aktuálny adresár nie je root
             if (!path.equals(rootDir)) {
                 String parent = path.substring(0, path.lastIndexOf(File.separator));
-                if (parent.equals(rootDir)) { // The first level
+                if (parent.equals(rootDir)) { // Prvý level
                     parent = "../";
                 }
                 else { // Druhá alebo hlbšia úroveň
                     parent = parent.replace(rootDir, "");
                 }
-                // Replace backslash to slash
+                // Nahraďte opačnú lomku lomkou
                 parent = parent.replace("\\", "/");
-                // Parent line
+                // Rodičovská line
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/folder.png")+"\"></img><a href=\"" + parent +"\">../</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/xfile.png")+"\"></img><a href=\"" + parent +"\">../</a></td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("</tr>");
             }
  
-            // Build lines for directories
+            // Vytvori riadky pre directory
             List<File> folders = getFileByType(files, true);
             for (File folder: folders) {
                 Log.write(">>> Directory: " + folder.getName());
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/folder.png")+"\"></img><a href=\""+buildRelativeLink(req, folder.getName())+"\">"+folder.getName()+"</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(req,"images/xfile.png")+"\"></img><a href=\""+buildRelativeLink(req, folder.getName())+"\">"+folder.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
                 sbDirHtml.append("  <td></td>");
                 sbDirHtml.append("</tr>");
             }
-            // Build lines for files
+            // Vytvori riadky pre súbory
             List<File> fileList = getFileByType(files, false);
             for (File f: fileList) {
                 Log.write(">>> File: " + f.getName());
                 sbDirHtml.append("<tr>");
-                sbDirHtml.append("  <td><img src=\""+buildImageLink(req, getFileImage(f.getName()))+"\" width=\"16\"></img><a href=\""+buildRelativeLink(req, f.getName())+"\">"+f.getName()+"</a></td>");
+                sbDirHtml.append("  <td><img src=\""+buildImageLink(req, getFileImage(f.getName()))+"\" width=\"20\"></img><a href=\""+buildRelativeLink(req, f.getName())+"\">"+f.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(f.lastModified()) + "</td>");
                 sbDirHtml.append("  <td>" + f.length() + "</td>");
                 sbDirHtml.append("</tr>");
@@ -261,10 +261,10 @@ class Worker extends Thread {
     }
  
     /**
-     * Build http header
-     * @param path, path of the request
-     * @param length, length of the content
-     * @return, header text
+     * Vytvori http header
+     * cesta k request
+     * dĺžka obsahu
+     * vrati header text
      */
     private String buildHttpHeader(String path, long length) {
         StringBuilder sbHtml = new StringBuilder();
@@ -278,10 +278,10 @@ class Worker extends Thread {
     }
  
     /**
-     * Build http page
-     * @param content, content of the page
-     * @param header1, h1 content
-     * @return, page text
+     * Vytvori http page
+     * obsah stránky
+     * header1, h1 content
+     * return page text
      */
     private String buildHtmlPage(String content, String header) {
         StringBuilder sbHtml = new StringBuilder();
@@ -310,11 +310,11 @@ class Worker extends Thread {
     }
  
     /**
-     * Build error page for bad request
-     * @param code, http cde: 400, 301, 200
-     * @param title, page title
-     * @param msg, error message
-     * @return, page text
+     * Vytvori error stránku pre zlú požiadavku
+     * code, http cde: 400, 301, 200
+     * title, page title
+     * msg, error sprava
+     * return page text
      */
     private String buildErrorPage(String code, String title, String msg) {
         StringBuilder sbHtml = new StringBuilder();
@@ -335,10 +335,10 @@ class Worker extends Thread {
     }
  
     /**
-     * Get file or directory list
-     * @param filelist, original file/directory list
-     * @param isfolder, flag indicates looking for file or directory list
-     * @return, file/directory list
+     * Získa zoznam súborov alebo adresárov
+     * zoznam súborov, pôvodný zoznam súborov/adresárov
+     *  isfolder, príznak označuje hľadanie súboru alebo zoznamu adresárov
+     * return zoznam súborov/adresárov
      */
     private List<File> getFileByType(File[] filelist, boolean isfolder) {
         List<File> files = new ArrayList<File>();
@@ -358,9 +358,9 @@ class Worker extends Thread {
     }
  
     /**
-     * Parse parameter from url to key value pair
-     * @param url, url from client
-     * @return, pair list
+     * Analyzuje parameter z adresy URL do key value pair
+     * url od klienta
+     * return zoznam párov
      */
     private Map<String, String> parseUrlParams(String url) throws UnsupportedEncodingException {
         HashMap<String, String> mapParams = new HashMap<String, String>();
@@ -378,8 +378,8 @@ class Worker extends Thread {
     }
  
     /**
-     * Get root path
-     * @return, path of the current location
+     * Získa koreňovú cestu
+     * return cesta k aktuálnej polohe
      */
     private String getRootFolder() {
         String root = "";
@@ -394,9 +394,9 @@ class Worker extends Thread {
     }
  
     /**
-     * Convert date to specified format
-     * @param lastmodified, long value represents date
-     * @return, formatted date in string
+     * Previesť dátum do určeného formátu
+     * lastmodified, dlhá hodnota predstavuje dátum
+     * return formátovaný dátum v reťazci
      */
     private String getFormattedDate(long lastmodified) {
         if (lastmodified < 0) {
@@ -409,10 +409,10 @@ class Worker extends Thread {
     }
  
     /**
-     * Build relative link
-     * @param current, current request
-    * @param filename, file name
-     * @return, formatted file name
+     * Vytvori relatívny odkaz
+     *  current, aktuálna požiadavka
+     *  názov súboru, názov súboru
+     * return formátovaný názov súboru
      */
     private String buildRelativeLink(String req, String filename) {
         if (req == null || req.equals("") || req.equals("/")) {
@@ -424,10 +424,10 @@ class Worker extends Thread {
     }
  
     /**
-     * Build image link for icons
-     * @param current, current request
-     * @param filename, file name
-     * @return, formatted file name
+     * Vytvori odkaz na obrázok pre ikony
+     * current, aktuálna požiadavka
+     * názov súboru
+     * return formátovaný názov súboru
      */
     private String buildImageLink(String req, String filename) {
         if (req == null || req.equals("") || req.equals("/")) {
@@ -446,9 +446,9 @@ class Worker extends Thread {
     }
  
     /**
-     * Get file icon according to its extension
-     * @param path, file path
-     * @return, icon path
+     * Získa ikonu súboru podľa jej prípony
+     *  cesta, cesta k súboru
+     * return cesta k ikone
      */
     private static String getFileImage(String path) {
         if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
