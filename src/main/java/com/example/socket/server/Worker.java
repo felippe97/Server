@@ -441,7 +441,7 @@ class Worker extends Thread {
 		case ".spiderman":
 			return "images/spiderman.png";
 		case ".mm":
-		return "images/xml.png";
+			return "images/spiderman.png";
 		default:
 			return "images/default.png";
 		}
