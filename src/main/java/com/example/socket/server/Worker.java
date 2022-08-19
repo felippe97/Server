@@ -429,16 +429,16 @@ class Worker extends Thread {
 		switch (extension) {
 		case ".class":
 			return "images/class.png";
-		case ".html":
-			return "images/html.jpg";
 		case ".java":
 			return "images/java.png";
 		case ".txt":
 			return "images/text.png";
 		case ".xml":
 			return "images/xml.png";
+		case ".html":
+			return "images/html.jpg";
 		default:
-			return "images/default.png";
+			return "images/spiderman.png";
 		}
 	}
 
