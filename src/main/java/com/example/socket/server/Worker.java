@@ -466,7 +466,7 @@ class Worker extends Thread {
 		case ".ico":
 			return "image/x-icon .ico";
 		case ".wml":
-			return "text/html"; // text/vnd.wap.wml
+			return "text/html"; 
 		default:
 			return "text/plain";
 		}
