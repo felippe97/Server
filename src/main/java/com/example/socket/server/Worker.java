@@ -35,22 +35,19 @@ class Worker extends Thread {
      */
     public void run(){
         try{
-            // Vždy vymaže zoznam na spracovanie novej požiadavky
-            Log.clear();
+           
+     
           
          // Lokálna čítačka od klienta
             
             // Výstupný tok na klienta
             PrintStream printer = new PrintStream(socket.getOutputStream());
  
-            Log.write("");
-            Log.write("Http Worker is working...");
-            Log.write(clientRequest);
- 
+			
             if (!clientRequest.startsWith("GET") || clientRequest.length() < 14 ||
                     !(clientRequest.endsWith("HTTP/1.0") || clientRequest.endsWith("HTTP/1.1"))) {
                 // zlá požiadavka
-                Log.write("400(Bad Request): " + clientRequest);
+          
                 String errorPage = buildErrorPage("400", "Bad Request", "Your browser sent a request that this server could not understand.");
                 printer.println(errorPage);
             }
@@ -58,7 +55,7 @@ class Worker extends Thread {
                 String req = clientRequest.substring(4, clientRequest.length()-9).trim();
                 if (req.indexOf("..") > -1 || req.indexOf("/.ht") > -1 || req.endsWith("~")) {
                     // hackerský útok
-                    Log.write("403(Forbidden): " + req);
+         
                     String errorPage = buildErrorPage("403", "Forbidden", "You don't have permission to access the requested URL " + req);
                     printer.println(errorPage);
                 }
@@ -66,8 +63,7 @@ class Worker extends Thread {
                     if (!req.startsWith("/images/") && !req.endsWith("favicon.ico")) {
                     	// Vyhnite sa tlači správ/protokolov pre požiadavky na ikony
                         // Prijmite požiadavku http get od klienta
-                        // String clientRequest = reader.readLine();
-                        //LogUtil.write("> Prijatá nová požiadavka: " + clientRequest);
+                       
                     }
                     // Dekódovať adresu URL, napr. New%20folder -> New folder
                     req = URLDecoder.decode(req, "UTF-8");
@@ -78,24 +74,23 @@ class Worker extends Thread {
                     // Handle požiadavky
                     if (req.indexOf(".")>-1) { // Žiadosť o jeden súbor
                         if (req.indexOf(".fake-cgi")>-1) { // CGI žiadosť Common Gateway Interface
-                            Log.write("> This is a [CGI] request..");
+
                             handleCGIRequest(req, printer);
                         }
                         else { // Žiadosť o jeden súbor
                             if (!req.startsWith("/images/")&&!req.startsWith("/favicon.ico")) {
-                                Log.write("> This is a [SINGLE FILE] request..");
+                         
                             }
                             handleFileRequest(req, printer);
                         }
                     }
                     else { // Žiadosť o adresár
-                        Log.write("> This is a [DIRECTORY EXPLORE] request..");
+                  
                         handleExploreRequest(req, printer);
                     }
                 }
             }
-            // Uložiť protokoly do súboru
-            Log.save(true);
+         
             socket.close();
         }
         catch(IOException ex){
@@ -105,9 +100,8 @@ class Worker extends Thread {
     }
  
     /**
-     * Handle CGI(fake) request
-     * req, get request from client
-     *  printer, output printer
+     * Vybaviť CGI (falošnú) požiadavku
+     * požiadavka, získajte požiadavku od klienta
      */
     private void handleCGIRequest(String req, PrintStream printer) throws UnsupportedEncodingException {
         // Parse the url to key-value pair
@@ -120,12 +114,12 @@ class Worker extends Thread {
         // Validate the input params
         if (number1 == null || number2 == null) {
             String errormsg = "Invalid parameter: " + params.get("num1") + " or " + params.get("num2") + ", both must be integer!";
-            Log.write(">> " + errormsg);
+      
             String errorPage = buildErrorPage("500", "Internal Server Error", errormsg);
             printer.println(errorPage);
         }
         else {
-            Log.write(">> " + number1 + " + " + number2 + " = " + (number1+number2));
+       
             
 			/*
 			 * StringBuilder objekty sú ako String objekty, až na to, že ich možno
@@ -160,11 +154,11 @@ class Worker extends Thread {
         File file = new File(path);
         if (!file.exists() || !file.isFile()) { // If not exists or not a file
             printer.println("No such resource:" + req);
-            Log.write(">> No such resource:" + req);
+         
         }
         else { // file
             if (!req.startsWith("/images/")&&!req.startsWith("/favicon.ico")) {
-                Log.write(">> Seek the content of file: " + file.getName());
+         
             }
             // Vypis header html
             String htmlHeader = buildHttpHeader(path, file.length());
@@ -194,10 +188,10 @@ class Worker extends Thread {
         File file = new File (path) ;
         if (!file.exists()) { // Ak adresár directory neexistuje
             printer.println("No such resource:" + request);
-            Log.write(">> No such resource:" + request);
+        
         }
         else { // Keď existuje
-            Log.write(">> Explore the content under folder: " + file.getName());
+        
             // Získa všetky súbory a adresár v aktuálnom adresári
             File[] files = file.listFiles();
             Arrays.sort(files);
@@ -234,7 +228,7 @@ class Worker extends Thread {
             // Vytvori riadky pre directory
             List<File> folders = getFileByType(files, true);
             for (File folder: folders) {
-                Log.write(">>> Directory: " + folder.getName());
+              
                 sbDirHtml.append("<tr>");
                 sbDirHtml.append("  <td><img src=\""+buildImageLink(request,"images/xfile.png")+"\"></img><a href=\""+buildRelativeLink(request, folder.getName())+"\">"+folder.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
@@ -244,7 +238,7 @@ class Worker extends Thread {
             // Vytvori riadky pre súbory
             List<File> fileList = getFileByType(files, false);
             for (File f: fileList) {
-                Log.write(">>> File: " + f.getName());
+          
                 sbDirHtml.append("<tr>");
                 sbDirHtml.append("  <td><img src=\""+buildImageLink(request, getFileImage(f.getName()))+"\" width=\"20\"></img><a href=\""+buildRelativeLink(request, f.getName())+"\">"+f.getName()+"</a></td>");
                 sbDirHtml.append("  <td>" + getFormattedDate(f.lastModified()) + "</td>");
@@ -437,7 +431,7 @@ class Worker extends Thread {
             String imageLink = filename;
             for(int i = 0; i < req.length(); i++) {
                 if (req.charAt(i) == '/') {
-                    // For each downstairs level, need a upstairs level path
+                    
                     imageLink = "../" + imageLink;
                 }
             }
