@@ -1,0 +1,9 @@
+https://logback.qos.ch/documentation.html
+
+
+https://www.slf4j.org/
+
+
+https://curl.se/
+
+

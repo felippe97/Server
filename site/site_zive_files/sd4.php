@@ -1,0 +1,1 @@
+var adsSod = {"l":1};var adsPrefix = adsPrefix || 'm_';var googletag = googletag || {};googletag.cmd = googletag.cmd || [];googletag.cmd.push(function(){['l','a','g','r','c','p','d'].forEach(function(param) { if (adsSod[param]) { googletag.pubads().setTargeting('sd_' + param, [adsSod[param].toString()]); }});;});

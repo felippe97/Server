@@ -1,0 +1,82 @@
+if (!0) {document.write("<div id='gttnqrssngtsnusgospnilkw'></div>");}
+(_gdeaq = window._gdeaq || []).push(['nc', 'false']);
+(_gdeaq = window._gdeaq || []).push(['gdpr_consent', '']);
+if (0) {(_gdeaq = window._gdeaq || []).push(['roc', 'true']);
+(_gdeaq = window._gdeaq || []).push(['plain']);
+}(_gdeaq = window._gdeaq || []).push(['hit', 'sk', 'bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7', 'rdejbtoucz', 'adzuejijxqnkcjigteargfdhogjm']);
+if(0){(function() {var s = document.getElementsByTagName("script")[0];var xgde = document.createElement("script");xgde.async = true;xgde.src = "https://sk.hit.gemius.pl/gdejs/xgde.js";s.parentNode.insertBefore(xgde, s);})();}else{document.write('<scr' + 'ipt type="text/javascript" src="https://sk.hit.gemius.pl/gdejs/xgde.js"> </scr' + 'ipt>');}
+
+
+;(_gdeaq = window._gdeaq || []).push(['require', [
+  "https://skgde.adocean.pl/files/js/billboard_gao_lib.async.js?v=2",
+  "https://sk.hit.gemius.pl/gdejs/inscreen_lib.js"
+],
+function(BillboardGao, InscreenLib) {
+//Billboard Banner Box
+if(typeof gao === "undefined") gao = {};
+if(typeof gao.bbb !== "object") gao.bbb = [];
+bbb = {};
+bbb.targetID="" || "gttnqrssngtsnusgospnilkw";
+bbb.width = "300";
+bbb.height = "600";
+bbb.htmlFile = "";
+bbb.swfFile = "";
+bbb.imgFile = "https://skgde.adocean.pl/files/akaiiqiduos/qjpomipnri/vpghjxnfor/Ringier_floating_produkt_300x600_brand_other_other_tenisky_retail.jpg";
+bbb.htmlCode = "";
+bbb.alignment = "inherit";
+bbb.redirection = "clickTag="+encodeURIComponent("https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjssHSM_iCl2Zj9S94zcWXNMtNEORIA7QFZeDMtYgxC7L9i6mbSh00O9QDRRexrboaL_GPqpRppKmnGPhjldwAfS-oQos15JPnHFo3MTxVFCRlVXGg7B0LwWuq-nPpjo2IqMkQKxeZ5EwvGkFfuE2BHvErVOHcesmK-pHXVA8Sww3PwTE4JjaLOC7RKsHVF8tAoWVgSliBB7SOcL9TtX6Z7kPe5JROKnHBOSLH63WXL0pyKYOL2CpF52LLdPb9uYNgl9odDt_Munn_CoIuwf6dMOK66YNy2c8jIXD5PEQ6n5b29t8EzlcUpM7pdut-BUxmwRgCQJjUI3q&sai=AMfl-YTjD-QHUOAXXFelJQ-XgfYjQS3ALo5ga9bM8XU4Dtvi7w1num0DvU2khGKGnZ2E9gUGVisZnyh0nmtj3x_7881ToHOGoauGB6yvgAMpd1tsiMx_yKyQq9yRU30d1jI&sig=Cg0ArKJSzKX8Q28nIL-sEAE&fbs_aeid=[gw_fbsaeid]&urlfix=1&adurl="+encodeURIComponent("https://sk.hit.gemius.pl/lshitredir/id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/fastid=etjxtuakwyzrbgdpsxdlgmxamgmt/stparam=upnjejsjmw/roc=0/url="+encodeURIComponent('https://www.lidl.sk/c/fitnes/a10014118?&utm_source=ringier&utm_medium=display&utm_campaign=brand_other_other_tenisky_retail&utm_content=300600&mktc=display_retail')))+"";
+bbb.redir = "https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjssHSM_iCl2Zj9S94zcWXNMtNEORIA7QFZeDMtYgxC7L9i6mbSh00O9QDRRexrboaL_GPqpRppKmnGPhjldwAfS-oQos15JPnHFo3MTxVFCRlVXGg7B0LwWuq-nPpjo2IqMkQKxeZ5EwvGkFfuE2BHvErVOHcesmK-pHXVA8Sww3PwTE4JjaLOC7RKsHVF8tAoWVgSliBB7SOcL9TtX6Z7kPe5JROKnHBOSLH63WXL0pyKYOL2CpF52LLdPb9uYNgl9odDt_Munn_CoIuwf6dMOK66YNy2c8jIXD5PEQ6n5b29t8EzlcUpM7pdut-BUxmwRgCQJjUI3q&sai=AMfl-YTjD-QHUOAXXFelJQ-XgfYjQS3ALo5ga9bM8XU4Dtvi7w1num0DvU2khGKGnZ2E9gUGVisZnyh0nmtj3x_7881ToHOGoauGB6yvgAMpd1tsiMx_yKyQq9yRU30d1jI&sig=Cg0ArKJSzKX8Q28nIL-sEAE&fbs_aeid=[gw_fbsaeid]&urlfix=1&adurl=https://sk.hit.gemius.pl/lshitredir/id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/fastid=etjxtuakwyzrbgdpsxdlgmxamgmt/stparam=upnjejsjmw/roc=0/url=";
+if("https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjssHSM_iCl2Zj9S94zcWXNMtNEORIA7QFZeDMtYgxC7L9i6mbSh00O9QDRRexrboaL_GPqpRppKmnGPhjldwAfS-oQos15JPnHFo3MTxVFCRlVXGg7B0LwWuq-nPpjo2IqMkQKxeZ5EwvGkFfuE2BHvErVOHcesmK-pHXVA8Sww3PwTE4JjaLOC7RKsHVF8tAoWVgSliBB7SOcL9TtX6Z7kPe5JROKnHBOSLH63WXL0pyKYOL2CpF52LLdPb9uYNgl9odDt_Munn_CoIuwf6dMOK66YNy2c8jIXD5PEQ6n5b29t8EzlcUpM7pdut-BUxmwRgCQJjUI3q&sai=AMfl-YTjD-QHUOAXXFelJQ-XgfYjQS3ALo5ga9bM8XU4Dtvi7w1num0DvU2khGKGnZ2E9gUGVisZnyh0nmtj3x_7881ToHOGoauGB6yvgAMpd1tsiMx_yKyQq9yRU30d1jI&sig=Cg0ArKJSzKX8Q28nIL-sEAE&fbs_aeid=[gw_fbsaeid]&urlfix=1&adurl=https://sk.hit.gemius.pl/lshitredir/id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/fastid=etjxtuakwyzrbgdpsxdlgmxamgmt/stparam=upnjejsjmw/roc=0/url="!= "" )
+bbb.targetUrl = encodeURIComponent("https://www.lidl.sk/c/fitnes/a10014118?&utm_source=ringier&utm_medium=display&utm_campaign=brand_other_other_tenisky_retail&utm_content=300600&mktc=display_retail");
+else
+bbb.targetUrl = "https://www.lidl.sk/c/fitnes/a10014118?&utm_source=ringier&utm_medium=display&utm_campaign=brand_other_other_tenisky_retail&utm_content=300600&mktc=display_retail";
+bbb.flashVar = [];
+bbb.flashVer = 10;
+bbb.quality = "high";
+bbb.flashParams = [];
+bbb.flashParams["wmode"] = "opaque";
+bbb.flashParams["bgcolor"] = "#ffffff";
+bbb.idName = "gttnqrssngtsnusgospnilkwbbb_swf_";
+bbb.creativeID = "bbb.creativegttnqrssngtsnusgospnilkw";
+bbb.clicktagOverlay=false;
+bbb.additionalHtml="";
+BillboardGao(bbb);
+
+if ("https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0" && "https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0") {
+  if(typeof _gde_insdwl_id==="undefined")_gde_insdwl_id={};
+  _gde_insdwl_id["id_gttnqrssngtsnusgospnilkw"]=bbb.creativeID;
+
+  if(typeof _gde_inscreen==="undefined")_gde_inscreen={};
+  _gde_inscreen["id_gttnqrssngtsnusgospnilkw"]="https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0";
+
+  if(typeof _gde_inscreen_end==="undefined")_gde_inscreen_end={};
+  _gde_inscreen_end["id_gttnqrssngtsnusgospnilkw"]="https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0";
+
+  if(typeof _gde_dwell==="undefined")_gde_dwell={};
+  _gde_dwell["id_gttnqrssngtsnusgospnilkw"]="https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0";
+
+  if(typeof _gde_dwell_end==="undefined")_gde_dwell_end={};
+  _gde_dwell_end["id_gttnqrssngtsnusgospnilkw"]="https://sk.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=bQpKVg8Sc0iLOl8Hsf9mm3YXzQY1PU9nOdCdRAjwBGT.l7/stparam=oelpeqijwy/roc=0";
+
+  if(typeof _gde_insdwl_th==="undefined")_gde_insdwl_th={};
+  _gde_insdwl_th["id_gttnqrssngtsnusgospnilkw"]=0.5;
+
+  if(typeof _gde_insdwl_tm==="undefined")_gde_insdwl_tm={};
+  _gde_insdwl_tm["id_gttnqrssngtsnusgospnilkw"]=[1000, 30000];
+
+  InscreenLib.init();
+}
+
+    if (typeof window.addEventListener == "function") {
+        window.addEventListener("message", function(message) {
+            if (message.origin == "https://skgde.adocean.pl" || "".indexOf(message.origin) >= 0) {
+                if (typeof window[message.data] == "function") {
+                    window[message.data]();
+                }
+            }
+        });
+    }
+
+}]);
+
+

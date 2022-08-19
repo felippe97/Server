@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://s0.2mdn.net/sadbundle/5643889964676558750/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1"><meta name="ad.size" content="width=300,height=250"><title>CAPE - Template</title><link rel="stylesheet" href="./main.css"><script type="text/javascript">var clickTag = "http://www.google.com";</script><script type="text/javascript">
+    
+  (function() {
+    var MAX_URL_PARAM_LENGTH = 34;
+    var CLICK_X_URL_KEY = 'nx';
+    var CLICK_Y_URL_KEY = 'ny';
+    var CREATIVE_DIMENSIONS_KEY = 'dim';
+    var AD_URL_PARAM = '&adurl=';
+
+    var relegateNavigation = '';
+    var urlParamMap = {};
+
+    urlParamMap[CLICK_X_URL_KEY] = null;
+    urlParamMap[CLICK_Y_URL_KEY] = null;
+    urlParamMap[CREATIVE_DIMENSIONS_KEY] = null;
+
+    var handleClickTagMessage = function(e) {
+      try {
+        var eventData = JSON.parse(e.data);
+      } catch (err) {
+        return;
+      }
+      if (eventData.isInitClickTag) {
+        if (eventData.clickTags) {
+          for (var i = 0; i < eventData.clickTags.length; i++) {
+            var clkTag = eventData.clickTags[i];
+            window[clkTag.name] = clkTag.url;
+          }
+        } else if (eventData.clickTag) {
+          window.clickTag = eventData.clickTag;
+        }
+        relegateNavigation = eventData.relegateNavigation;
+      }
+    };
+
+    var storeClickCoordinates = function(e) {
+      urlParamMap[CLICK_X_URL_KEY] = Math.round(e.clientX);
+      urlParamMap[CLICK_Y_URL_KEY] = Math.round(e.clientY);
+    };
+
+    var getCreativeDimensions = function() {
+      return window.innerWidth + 'x' + window.innerHeight;
+    }
+
+    var getExitClickParams = function(e) {
+      urlParamMap[CREATIVE_DIMENSIONS_KEY] = getCreativeDimensions();
+
+      var exitParams = '';
+      for (var key in urlParamMap) {
+        exitParams += '&' + key + '=';
+        if (urlParamMap[key] !== null) {
+          exitParams += urlParamMap[key];
+        }
+      }
+      return exitParams;
+    }
+
+    var appendExitClickParams = function(url) {
+      var adUrlIndex = url.toLowerCase().indexOf(AD_URL_PARAM);
+      var paramsToBeAdded = getExitClickParams();
+      if (adUrlIndex > -1 && paramsToBeAdded.length <= MAX_URL_PARAM_LENGTH) {
+        url = url.substr(0, adUrlIndex) + paramsToBeAdded +
+          url.substr(adUrlIndex);
+      };
+      return url;
+    };
+
+    if (open.call) {
+      window.open = function(open) {
+        return function(url, name, features) {
+          url = appendExitClickParams(url);
+          if (relegateNavigation === 'parent') {
+            var message = {'clickTag': url, 'isPostClickTag': true};
+            parent.postMessage(JSON.stringify(message), '*');
+          } else {
+            var args = [url, name];
+            if (features) {
+              args.push(features);
+            }
+            open.apply(window, args);
+          }
+        };
+      }(window.open);
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener(
+          'message', handleClickTagMessage, false);
+      window.addEventListener('mousedown', storeClickCoordinates, true);
+    } else {
+      window.attachEvent('onmessage', handleClickTagMessage);
+    }
+  })();
+    
+  </script></head><body><!-- Replaced data --><script>var injectedCampaignData = {"language":"SK","hideRazor":"hide","productImageAmount":"1","headlineColor":"#ffffff","loops":"0","frames":{"frame1":{"type":"product","frameDuration":"4000","previewHeadline":"1","logoType":"default","logoPosition":"default","logoScale":100,"ctaText":{"multilanguage":true,"EN":{"value":"Discover More","requiresTranslation":false,"updated":true,"maxLength":80}},"ctaScale":80,"ctaAlignment":"default","headlineText1":{"multilanguage":true,"EN":{"value":"Can\u2019t beat a classic margherita"},"BG":{"value":"\u041d\u044f\u043c\u0430 \u043f\u043e-\u0434\u043e\u0431\u0440\u043e \u043e\u0442 \u043a\u043b\u0430\u0441\u0438\u0447\u0435\u0441\u043a\u0430 \u043f\u0438\u0446\u0430 \u041c\u0430\u0440\u0433\u0430\u0440\u0438\u0442\u0430"},"FRBE":{"value":"Rien de mieux qu\u2019une Margherita"},"NLBE":{"value":"Niets verslaat de pizza margherita"},"DA":{"value":"Den klassiske margherita er et hit"},"NL":{"value":"Pizza margherita blijft de beste"},"FRCH":{"value":"Rien de mieux qu\u2019une margherita"},"FR":{"value":"Rien de meilleur qu\u2019une Margherita"},"DEAT":{"value":"Pizza Margherita - der Klassiker!"},"DECH":{"value":"Pizza Margherita - der Klassiker!"},"DE":{"value":"Pizza Margherita - der Klassiker!"},"IW":{"value":"\u05d0\u05d9\u05df \u05db\u05de\u05d5 \u05e4\u05d9\u05e6\u05d4 \u05d9\u05e9\u05e8 \u05de\u05d4\u05ea\u05e0\u05d5\u05e8"},"IT":{"value":"Cosa c'\u00e8 di meglio di una pizza?"},"PL":{"value":"Nic nie przebije klasyki"},"RO":{"value":"Ce e mai bun dec\u00e2t o pizza?"},"ES":{"value":"No hay nada mejor que una pizza margarita"},"SK":{"value":"Niet nad klasick\u00fa pizzu Margherita "},"FRCA":{"value":"Rien de tel qu\u2019une bonne Margherita"}},"headlineScale":100,"headlineAlignment":"default","headlineLineHeight":90,"headlineText2":{"multilanguage":true,"EN":{"value":"Even better when it\u2019s delivered"},"BG":{"value":"\u041f\u043e-\u0432\u043a\u0443\u0441\u043d\u0430 \u0435, \u043a\u043e\u0433\u0430\u0442\u043e \u0435 \u0434\u043e\u0441\u0442\u0430\u0432\u0435\u043d\u0430"},"FRBE":{"value":"Encore meilleure si livr\u00e9e"},"NLBE":{"value":"Zeker als hij wordt bezorgd"},"DA":{"value":"Og endnu bedre n\u00e5r den leveres"},"NL":{"value":"Zeker als hij wordt bezorgd"},"FRCH":{"value":"Encore meilleur quand c\u2019est livr\u00e9"},"FR":{"value":"Encore mieux quand elle est livr\u00e9e"},"DEAT":{"value":"In wenigen Klicks geliefert"},"DECH":{"value":"Und geliefert noch besser"},"DE":{"value":"In wenigen Klicks geliefert"},"IW":{"value":"\u05d5\u05d4\u05d9\u05d0 \u05d0\u05e4\u05d9\u05dc\u05d5 \u05d8\u05e2\u05d9\u05de\u05d4 \u05d9\u05d5\u05ea\u05e8 \u05d1\u05de\u05e9\u05dc\u05d5\u05d7"},"IT":{"value":"Ancora meglio se consegnata a casa"},"PL":{"value":"Szczeg\u00f3lnie dostarczonej pod Twoje drzwi"},"RO":{"value":"O pizza cu livrare gratuit\u0103"},"ES":{"value":"Sobre todo si te la traen a casa"},"SK":{"value":"S don\u00e1\u0161kou chut\u00ed e\u0161te lep\u0161ie"},"FRCA":{"value":"Encore meilleur quand c\u2019est livr\u00e9"}},"productImage1":{"url":"img_62d7abac9e6814.33758726.png","transforms":{"scale":null,"left":-8.84373,"bottom":-11.0549,"width":200,"height":200}},"productImage1Scale":100,"moveCta":true}},"market":"SK","brand":"","format":"inlinerectangle","frameNr":0,"editmode":0};;</script><div id="clickTagLayer" style="z-index: 999; cursor: pointer;"></div><!-- Banner --><div template-banner="" class="banner inlinerectangle vertical animation frame1 animation-in" style="cursor: pointer"><div class="frames"><!-- Frame product --><div class="frame product frame1 undefined active animation-in" frame-type="product" frame-index="1" frame-key="frame1" frame-duration="4000" frame-animation-duration="1200" frame-loop="1" frame-overlap="700" style="z-index: 11;"><div class="background__position" style="left: 0px; top: 0px; width: 100%; height: 100%;"><div class="background__holder"><div class="background__animation"><div class="background" template="background" style="background: rgb(255, 128, 0);"></div></div></div></div><div class="legalText__position" original-display="block" style="display: none; top: 10px; left: 10px; height: 75px;"><div class="legalText__holder"><div class="legalText__animation"><div class="legalText" template="legalText" path="{&quot;color&quot;:&quot;model.legalTextColor&quot;,&quot;lineHeight&quot;:&quot;model.legalTextLineHeight&quot;,&quot;fontScale&quot;:&quot;model.legalTextFontSize&quot;,&quot;textAlign&quot;:&quot;model.legalTextAlign&quot;}" style="display: none; font-size: 5px;"><span class="text-container"></span></div></div></div></div><div class="animationOutHolder"><div class="tableHolder__position"><div class="tableHolder__holder"><div class="tableHolder__animation"><div class="tableHolder" template="tableHolder"><div class="table__position undefinedundefined undefined tableVertical" original-display="block" original-classes="[&quot;table__position&quot;]" style="display: none; width: 400%; right: 0px; bottom: -22%;"><div class="table__holder"><div class="table__animation"><div class="table" template="table" style="background: rgb(239, 237, 234);"><div class="corner__position" original-display="block" path="{&quot;width&quot;:&quot;model.frames.frame1.cornerWidth/100&quot;}" style="display: block; right: 0px; height: 1000%;"><div class="corner__holder"><div class="corner__animation"><div class="corner" template="corner" path="{&quot;backgroundColor&quot;:&quot;model.cornerColor&quot;,&quot;transform&quot;:&quot;model.tablePerspective&quot;}"></div></div></div></div></div></div></div></div></div></div></div></div></div><div class="productImage1__position productsAmount1 undefined" original-display="block" original-classes="[&quot;productImage1__position&quot;]" scale="null" style="display: block; width: 200px; height: 200px; bottom: -11.0549px; left: -8.84373px; transform: scale(1);"><div class="productImage1__holder"><div class="productImage1__animation"><div class="productImage1" template="productImage1" path="{&quot;backgroundImage&quot;:&quot;model.frames.frame1.productImage1.url&quot;}" style="background-image: url(&quot;img_62d7abac9e6814.33758726.png&quot;);"></div></div></div></div><div class="productImage2__position productsAmount1 undefined" original-display="block" original-classes="[&quot;productImage2__position&quot;]" style="display: none; width: 200px; height: 200px; right: 20px; bottom: 25px; left: 8px;"><div class="productImage2__holder"><div class="productImage2__animation"><div class="productImage2" template="productImage2" path="{&quot;backgroundImage&quot;:&quot;model.productImage2.url&quot;}" style="background-image: none;"></div></div></div></div><div class="productImage3__position productsAmount1 undefined" original-display="block" original-classes="[&quot;productImage3__position&quot;]" style="display: none; width: 200px; height: 200px; right: 20px; bottom: 25px; left: 8px;"><div class="productImage3__holder"><div class="productImage3__animation"><div class="productImage3" template="productImage3" path="{&quot;backgroundImage&quot;:&quot;model.productImage3.url&quot;}" style="background-image: none;"></div></div></div></div><div class="animationOutHolder"><div class="patch__position patchundefined" original-display="block" original-classes="[&quot;patch__position&quot;]" style="left: 220px; top: 70px; display: none;"><div class="patch__holder"><div class="patch__animation"><div class="patch" template="patch" path="{&quot;color&quot;:&quot;model.patchBackgroundColor.substring(1)&quot;,&quot;backgroundColor&quot;:&quot;model.patchBackgroundColor&quot;}" style="font-size: 5px; color: rgb(255, 255, 255); text-align: center; padding: 0.8em 2.5em 1em;"><div class="patchHeadline__position"><div class="patchHeadline__holder"><div class="patchHeadline__animation"><div class="patchHeadline" template="patchHeadline" path="{&quot;fontScale&quot;:&quot;model.patchHeadlineFontScale&quot;}" style="display: none; font-size: 2em;"><span class="text-container"></span></div></div></div></div><div class="patchSubline__position"><div class="patchSubline__holder"><div class="patchSubline__animation"><div class="patchSubline" template="patchSubline" path="{&quot;fontScale&quot;:&quot;model.patchSublineFontScale&quot;}" style="display: none; font-size: 2em;"><span class="text-container"></span></div></div></div></div></div></div></div></div><div class="contentHolder__position alignCtadefault" original-classes="[&quot;contentHolder__position&quot;]" style="top: 18px; left: 18px; height: 85px; right: 18px;"><div class="contentHolder__holder"><div class="contentHolder__animation"><div class="contentHolder" template="contentHolder" style="font-size: 24px;"><div class="headlineHolder__position moveHeadlinetrue" original-classes="[&quot;headlineHolder__position&quot;]" style="left: 0px; top: 0px;"><div class="headlineHolder__holder"><div class="headlineHolder__animation"><div class="headlineHolder" template="headlineHolder" path="{&quot;fontScale&quot;:&quot;model.frames.frame1.headlineScale&quot;,&quot;color&quot;:&quot;model.headlineColor&quot;,&quot;lineHeight&quot;:&quot;model.frames.frame1.headlineLineHeight / 100&quot;}" style="font-size: 1em; color: rgb(255, 255, 255); line-height: 0.9; height: 43px;"><span class="text-container" style="font-size: 1em;"><div class="headline1__position previewHeadline1" original-classes="[&quot;headline1__position&quot;]"><div class="headline1__holder"><div class="headline1__animation"><div class="headline1" template="headline1" style="display: block; text-align: right;"><span class="text-container" style="display: inline-block;">Niet nad klasickú pizzu Margherita </span></div></div></div></div><div class="headline2__position previewHeadline1" original-classes="[&quot;headline2__position&quot;]"><div class="headline2__holder"><div class="headline2__animation"><div class="headline2" template="headline2" style="display: block; text-align: right;"><span class="text-container" style="display: inline-block;">S donáškou chutí ešte lepšie</span></div></div></div></div></span></div></div></div></div><div class="ctaContainer__position"><div class="ctaContainer__holder"><div class="ctaContainer__animation"><div class="ctaContainer" template="ctaContainer" style="justify-content: flex-end; align-items: flex-start;"><div class="cta__position moveCtatrue alignContentdefault" original-classes="[&quot;cta__position&quot;]" style="top: 0px; left: 0px; transform-origin: right center; transform: scale(0.8);"><div class="cta__holder"><div class="cta__animation"><div class="cta" template="cta" style="display: none; color: white; font-size: 0.45em;"></div></div></div></div></div></div></div></div></div></div></div></div></div><div class="logoContainer__position"><div class="logoContainer__holder"><div class="logoContainer__animation"><div class="logoContainer" template="logoContainer" style="padding: 10px; justify-content: flex-end; align-items: flex-end;"><div class="logo__position moveLogoundefined" original-display="block" original-classes="[&quot;logo__position&quot;]" style="top: 0px; left: 0px; height: 40px; display: none; background-position: right bottom; transform-origin: right bottom; transform: scale(1);"><div class="logo__holder"><div class="logo__animation"><div class="logo" template="logo" path="{&quot;backgroundImage&quot;:&quot;model.market&quot;}" style="background-image: url(&quot;logo_SK_v.svg&quot;); aspect-ratio: 2 / 1; background-color: rgba(0, 0, 0, 0); -webkit-mask: none; width: 42.054px;"></div></div></div></div><div class="logoHorizontal__position undefined moveLogoundefined" original-classes="[&quot;logoHorizontal__position&quot;]" original-display="block" style="top: 0px; left: 0px; height: 30px; display: none; background-position: right bottom; transform-origin: right bottom; transform: scale(1);"><div class="logoHorizontal__holder"><div class="logoHorizontal__animation"><div class="logoHorizontal" template="logoHorizontal" path="{&quot;backgroundImage&quot;:&quot;model.market&quot;}" style="background-image: url(&quot;logo_SK_h.svg&quot;); background-position: 50% center; aspect-ratio: 8 / 1; background-color: rgba(0, 0, 0, 0); -webkit-mask: none; width: 113.255px;"></div></div></div></div><div class="logoDSS__position moveLogoundefined" original-display="block" original-classes="[&quot;logoDSS__position&quot;]" style="top: 0px; left: 0px; height: 100px; display: block; background-position: right bottom; transform-origin: right bottom; transform: scale(1);"><div class="logoDSS__holder"><div class="logoDSS__animation"><div class="logoDSS" template="logoDSS" path="{&quot;backgroundImage&quot;:&quot;model.market&quot;}" style="background-image: url(&quot;logo_SK_DSS_v.png&quot;); aspect-ratio: 2 / 1; width: 95.1298px;"></div></div></div></div><div class="logoHorizontalDSS__position undefined moveLogoundefined" original-classes="[&quot;logoHorizontalDSS__position&quot;]" original-display="block" style="top: 0px; left: 0px; height: 50px; display: none; background-position: right bottom; transform-origin: right bottom; transform: scale(1);"><div class="logoHorizontalDSS__holder"><div class="logoHorizontalDSS__animation"><div class="logoHorizontalDSS" template="logoHorizontalDSS" path="{&quot;backgroundImage&quot;:&quot;model.market&quot;}" style="background-image: url(&quot;logo_SK_DSS_h.png&quot;); background-position: 50% center; aspect-ratio: 8 / 1; width: 107.341px;"></div></div></div></div></div></div></div></div></div></div><div class="mask"></div></div><script type="text/javascript">(function () {
+            var layer = document.getElementById("clickTagLayer");
+            if (layer) {
+                var listen = function (obj, e, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(e, fn, false);
+                    } else {
+                        obj.attachEvent("on" + e, fn);
+                    }
+                };
+                listen(layer, 'click', function (evt) {
+                    evt.stopPropagation();
+                    try {
+                        evt.cancelBubble();
+                    } catch (e) { /* ignore */
+                    }
+                    window.open(window.clickTag, '_blank');
+                });
+            }
+        })();</script><script src="./main.js.download"></script></body></html>

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'PeaceSans';
+    font-display: auto;
+    src: url('peace-sans.otf') format('otf'), /* Modern Browsers */
+    url('peace-sans.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal;
+    font-style: normal;
+}
