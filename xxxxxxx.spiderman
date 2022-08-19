@@ -1,0 +1,7 @@
+13:27:17.081 [main] INFO com.example.socket.server.Worker - Request - GET /favicon.ico HTTP/1.1
+13:27:26.518 [main] INFO com.example.socket.server.Worker - Request - GET /target HTTP/1.1
+13:27:26.554 [main] INFO com.example.socket.server.Worker - Request - GET /images/xfile.png HTTP/1.1
+13:27:26.562 [main] INFO com.example.socket.server.Worker - Request - GET /images/file.png HTTP/1.1
+13:27:26.563 [main] INFO com.example.socket.server.Worker - Request - GET /images/spiderman.png HTTP/1.1
+13:27:26.628 [main] INFO com.example.socket.server.Worker - Request - GET /favicon.ico HTTP/1.1
+13:27:33.768 [main] INFO com.example.socket.server.Worker - Request - GET /favicon.ico HTTP/1.1

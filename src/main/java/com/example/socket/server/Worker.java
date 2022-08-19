@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//import org.graalvm.compiler.nodes.ReturnNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -422,7 +423,7 @@ class Worker extends Thread {
 	 */
 	private static String getFileImage(String path) {
 		if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
-			return "images/setings.png";
+			return "images/spiderman.png";
 		}
 
 		String extension = path.substring(path.lastIndexOf("."));
@@ -437,9 +438,14 @@ class Worker extends Thread {
 			return "images/xml.png";
 		case ".html":
 			return "images/html.jpg";
-		default:
+		case ".spiderman":
 			return "images/spiderman.png";
+		case ".mm":
+		return "images/xml.png";
+		default:
+			return "images/default.png";
 		}
+		
 	}
 
 	/**
