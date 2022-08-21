@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import org.graalvm.compiler.nodes.ReturnNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,6 +65,7 @@ class Worker extends Thread {
 						// Prijmite požiadavku http get od klienta
 
 					}
+
 					// Dekódovať adresu URL, napr. New%20folder -> New folder
 					req = URLDecoder.decode(req, "UTF-8");
 					// Odstráňte poslednú lomku, ak existuje
@@ -76,9 +76,9 @@ class Worker extends Thread {
 					if (req.indexOf(".") > -1) { // Žiadosť o jeden súbor
 						if (req.indexOf(".fake-cgi") > -1) { // CGI žiadosť Common Gateway Interface
 
-							handleCGIRequest(req, printer);
+						//	handleCGIRequest(req, printer);
 						} else { // Žiadosť o jeden súbor
-							if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
+							if (!req.startsWith("/images/") && !req.startsWith("/default.png")) {
 
 							}
 							handleFileRequest(req, printer);
@@ -97,44 +97,6 @@ class Worker extends Thread {
 		}
 	}
 
-	/**
-	 * Vybaviť CGI (falošnú) požiadavku požiadavka, získajte požiadavku od klienta
-	 */
-	private void handleCGIRequest(String req, PrintStream printer) throws UnsupportedEncodingException {
-		// Parse the url to key-value pair
-		Map<String, String> params = parseUrlParams(req);
-
-		// Try to convert num1 and num2 to integer
-		Integer number1 = tryParse(params.get("num1"));
-		Integer number2 = tryParse(params.get("num2"));
-
-		// Validate the input params
-		if (number1 == null || number2 == null) {
-			String errormsg = "Invalid parameter: " + params.get("num1") + " or " + params.get("num2")
-					+ ", both must be integer!";
-
-			String errorPage = buildErrorPage("500", "Internal Server Error", errormsg);
-			printer.println(errorPage);
-		} else {
-
-			/*
-			 * StringBuilder objekty sú ako String objekty, až na to, že ich možno
-			 * upravovať. Interne sa s týmito objektmi zaobchádza ako s poliami s
-			 * premenlivou dĺžkou, ktoré obsahujú sekvenciu znakov. V ktoromkoľvek bode je
-			 * možné zmeniť dĺžku a obsah sekvencie prostredníctvom vyvolania metódy.
-			 */
-			StringBuilder sbContent = new StringBuilder();
-
-			sbContent.append("Dear " + params.get("person") + ", the sum of ");
-			sbContent.append(params.get("num1") + " and " + params.get("num2") + " is ");
-			sbContent.append(number1 + number2);
-			sbContent.append(".");
-			String htmlPage = buildHtmlPage(sbContent.toString(), "Fake-CGI: Add Two Numbers");
-			String htmlHeader = buildHttpHeader("aa.html", htmlPage.length());
-			printer.println(htmlHeader);
-			printer.println(htmlPage);
-		}
-	}
 
 	/**
 	 * Spracovanie žiadosti o jeden súbor req, získajte požiadavku od klienta
@@ -214,7 +176,7 @@ class Worker extends Thread {
 				// Rodičovská line
 				sbDirHtml.append("<tr>");
 				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/xfile.png")
-						+ "\" width=\"20\"></img><a href=\"" + parent + "\">../</a></td>");
+						+ "\" width=\"30\"></img><a href=\"" + parent + "\">../</a></td>");
 				sbDirHtml.append("  <td></td>");
 				sbDirHtml.append("  <td></td>");
 				sbDirHtml.append("</tr>");
@@ -279,7 +241,7 @@ class Worker extends Thread {
 		sbHtml.append(" table { width:50%; } ");
 		sbHtml.append(" th, td { padding: 3px; text-align: left; }");
 		sbHtml.append("</style>");
-		sbHtml.append("<title>My Web Server</title>");
+		sbHtml.append("<title> Web </title>");
 		sbHtml.append("</head>");
 		sbHtml.append("<body>");
 		if (header != null && !header.isEmpty()) {
@@ -289,7 +251,7 @@ class Worker extends Thread {
 		}
 		sbHtml.append(content);
 		sbHtml.append("<hr>");
-		sbHtml.append("<p>*This page is returned by Web Server.</p>");
+		sbHtml.append("<p> </p>");
 		sbHtml.append("</body>");
 		sbHtml.append("</html>");
 		return sbHtml.toString();
@@ -415,6 +377,7 @@ class Worker extends Thread {
 			}
 			return imageLink;
 		}
+		
 	}
 
 	/**
@@ -423,9 +386,8 @@ class Worker extends Thread {
 	 */
 	private static String getFileImage(String path) {
 		if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
-			return "images/spiderman.png";
+			return "setigs.png";
 		}
-
 		String extension = path.substring(path.lastIndexOf("."));
 		switch (extension) {
 		case ".class":
@@ -445,7 +407,7 @@ class Worker extends Thread {
 		default:
 			return "images/default.png";
 		}
-		
+
 	}
 
 	/**
@@ -466,10 +428,11 @@ class Worker extends Thread {
 		case ".ico":
 			return "image/x-icon .ico";
 		case ".wml":
-			return "text/html"; 
+			return "text/html";
 		default:
 			return "text/plain";
 		}
+
 	}
 
 	/**
