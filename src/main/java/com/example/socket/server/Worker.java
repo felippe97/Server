@@ -39,7 +39,7 @@ class Worker extends Thread {
 	public void run() {
 		try {
 
-			// Lokálna čítačka od klienta
+			
 
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
@@ -54,7 +54,7 @@ class Worker extends Thread {
 			} else {
 				String req = clientRequest.substring(4, clientRequest.length() - 9).trim();
 				if (req.indexOf("..") > -1 || req.indexOf("/.ht") > -1 || req.endsWith("~")) {
-					// hackerský útok
+					
 
 					String errorPage = buildErrorPage("403", "Forbidden",
 							"You don't have permission to access the requested URL " + req);
@@ -78,7 +78,7 @@ class Worker extends Thread {
 
 						//	handleCGIRequest(req, printer);
 						} else { // Žiadosť o jeden súbor
-							if (!req.startsWith("/images/") && !req.startsWith("/default.png")) {
+							if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
 
 							}
 							handleFileRequest(req, printer);
@@ -110,7 +110,10 @@ class Worker extends Thread {
 		// Skúste súbor otvoriť
 		File file = new File(path);
 		if (!file.exists() || !file.isFile()) { // If not exists or not a file
+		
 			printer.println("No such resource:" + req);
+			System.out.println("handleFileRequest" + req);
+			
 
 		} else { // file
 			if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
@@ -143,7 +146,7 @@ class Worker extends Thread {
 		File file = new File(path);
 		if (!file.exists()) { // Ak adresár directory neexistuje
 			printer.println("No such resource:" + request);
-
+			System.out.println("handleExploreRequest" + request);
 		} else { // Keď existuje
 
 			// Získa všetky súbory a adresár v aktuálnom adresári
@@ -344,7 +347,7 @@ class Worker extends Thread {
 		}
 
 		Date lm = new Date(lastmodified);
-		String lasmod = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(lm);
+		String lasmod = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(lm);
 		return lasmod;
 	}
 
@@ -385,6 +388,7 @@ class Worker extends Thread {
 	 * ikone
 	 */
 	private static String getFileImage(String path) {
+		
 		if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
 			return "setigs.png";
 		}
