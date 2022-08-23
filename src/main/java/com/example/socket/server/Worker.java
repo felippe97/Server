@@ -39,8 +39,6 @@ class Worker extends Thread {
 	public void run() {
 		try {
 
-			
-
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
 
@@ -54,7 +52,6 @@ class Worker extends Thread {
 			} else {
 				String req = clientRequest.substring(4, clientRequest.length() - 9).trim();
 				if (req.indexOf("..") > -1 || req.indexOf("/.ht") > -1 || req.endsWith("~")) {
-					
 
 					String errorPage = buildErrorPage("403", "Forbidden",
 							"You don't have permission to access the requested URL " + req);
@@ -76,7 +73,7 @@ class Worker extends Thread {
 					if (req.indexOf(".") > -1) { // Žiadosť o jeden súbor
 						if (req.indexOf(".fake-cgi") > -1) { // CGI žiadosť Common Gateway Interface
 
-						//	handleCGIRequest(req, printer);
+							// handleCGIRequest(req, printer);
 						} else { // Žiadosť o jeden súbor
 							if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
 
@@ -97,10 +94,9 @@ class Worker extends Thread {
 		}
 	}
 
-
 	/**
 	 * Spracovanie žiadosti o jeden súbor req, získajte požiadavku od klienta
-	 * tlačiareň, výstupná tlačiareň
+	 * tlačiareň, výstupná tlačiareň "/does-not-exist.png"
 	 */
 	private void handleFileRequest(String req, PrintStream printer) throws FileNotFoundException, IOException {
 		// Získajte koreňový priečinok webového servera
@@ -109,27 +105,30 @@ class Worker extends Thread {
 		String path = Paths.get(rootDir, req).toString();
 		// Skúste súbor otvoriť
 		File file = new File(path);
-		if (!file.exists() || !file.isFile()) { // If not exists or not a file
-		
-			printer.println("No such resource:" + req);
-			System.out.println("handleFileRequest" + req);
-			
 
-		} else { // file
-			if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
-
+		if (!file.exists() || !file.isFile()) {
+			if (req.startsWith("/images/")) {
+				path = Paths.get(rootDir, "/does-not-exist.png").toString();
+				file = new File(path);
+			} else {
+				path = null;
 			}
+		}
+
+		if (path != null) {
 			// Vypis header html
 			String htmlHeader = buildHttpHeader(path, file.length());
 			printer.println(htmlHeader);
 
 			// Otvorte file to input stream
-			InputStream fs = new FileInputStream(file);
-			byte[] buffer = new byte[1000];
-			while (fs.available() > 0) {
-				printer.write(buffer, 0, fs.read(buffer));
+			try (InputStream fs = new FileInputStream(file)) {
+				byte[] buffer = new byte[1000];
+				int readLength;
+				while ((readLength = fs.read(buffer)) != -1) {
+					printer.write(buffer, 0, readLength);
+				}
 			}
-			fs.close();
+			printer.flush();
 		}
 	}
 
@@ -142,13 +141,14 @@ class Worker extends Thread {
 		String rootDir = getRootFolder();
 		// Získa skutočnú cestu k súboru
 		String path = Paths.get(rootDir, request).toString();
+
 		// Vyskúša otvoriť directory
 		File file = new File(path);
 		if (!file.exists()) { // Ak adresár directory neexistuje
 			printer.println("No such resource:" + request);
 			System.out.println("handleExploreRequest" + request);
 		} else { // Keď existuje
-
+			System.out.println(" Existuje" + request);
 			// Získa všetky súbory a adresár v aktuálnom adresári
 			File[] files = file.listFiles();
 			if (files != null) {
@@ -168,6 +168,10 @@ class Worker extends Thread {
 
 			// Nadradený priečinok, zobrazi ho, ak aktuálny adresár nie je root
 			if (!path.equals(rootDir)) {
+				Map<String, Object> context = new HashMap<>();
+				context.put("imageLink", "sdkfjfj");
+				context.put("parent", "parent");
+				String row = buildRow("row.template", context);
 				String parent = path.substring(0, path.lastIndexOf(File.separator));
 				if (parent.equals(rootDir)) { // Prvý level
 					parent = "../";
@@ -273,6 +277,7 @@ class Worker extends Thread {
 		sbHtml.append("<title>" + code + " " + title + "</title>");
 		sbHtml.append("</head>");
 		sbHtml.append("<body>");
+
 		sbHtml.append("<h1>" + code + " " + title + "</h1>");
 		sbHtml.append("<p>" + msg + "</p>");
 		sbHtml.append("<hr>");
@@ -291,6 +296,7 @@ class Worker extends Thread {
 		List<File> files = new ArrayList<File>();
 		if (filelist == null || filelist.length == 0) {
 			return files;
+
 		}
 
 		for (int i = 0; i < filelist.length; i++) {
@@ -380,7 +386,7 @@ class Worker extends Thread {
 			}
 			return imageLink;
 		}
-		
+
 	}
 
 	/**
@@ -388,29 +394,30 @@ class Worker extends Thread {
 	 * ikone
 	 */
 	private static String getFileImage(String path) {
-		
+
 		if (path == null || path.equals("") || path.lastIndexOf(".") < 0) {
 			return "setigs.png";
 		}
-		String extension = path.substring(path.lastIndexOf("."));
-		switch (extension) {
-		case ".class":
-			return "images/class.png";
-		case ".java":
-			return "images/java.png";
-		case ".txt":
-			return "images/text.png";
-		case ".xml":
-			return "images/xml.png";
-		case ".html":
-			return "images/html.jpg";
-		case ".spiderman":
-			return "images/spiderman.png";
-		case ".mm":
-			return "images/spiderman.png";
-		default:
-			return "images/default.png";
-		}
+		String extension = path.substring(path.lastIndexOf(".") + 1);
+		return "images/" + extension + ".png";
+//		switch (extension) {
+//		case ".class":
+//			return "images/class.png";
+//		case ".java":
+//			return "images/java.png";
+//		case ".txt":
+//			return "images/text.png";
+//		case ".xml":
+//			return "images/xml.png";
+//		case ".html":
+//			return "images/html.jpg";
+//		case ".spiderman":
+//			return "images/spiderman.png";
+//		case ".mm":
+//			return "images/spiderman.png";
+//		default:
+//			return "images/default.png";
+//		}
 
 	}
 

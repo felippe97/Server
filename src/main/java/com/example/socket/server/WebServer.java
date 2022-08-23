@@ -20,8 +20,6 @@ public class WebServer {
 
 		// Číslo portu pre požiadavku http
 		int port = 8888;
-		// Odkaz na klientsky soket
-		Socket socket;
 
 		try {
 			// Soket servera
@@ -31,7 +29,7 @@ public class WebServer {
 
 			while (true) {
 				// Serverový soket čaká na požiadavku klienta
-				socket = servSocket.accept();
+				Socket socket = servSocket.accept();
 				// Lokálny reader od klienta
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -39,10 +37,12 @@ public class WebServer {
 				String request = "";
 				String clientRequest = "";
 				while ((clientRequest = reader.readLine()) != null) {
+					log.info("LINE: {}", clientRequest);
 					if (request.equals("")) {
 						request = clientRequest;
 					}
 					if (clientRequest.equals("")) { // Ak je koniec http žiadosti, break
+						log.info("BREAK");
 						break;
 					}
 				}

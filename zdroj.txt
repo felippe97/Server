@@ -7,3 +7,7 @@ https://www.slf4j.org/
 https://curl.se/
 
 
+https://docs.jboss.org/jbossremoting/2.5.4/userguide/html/index.html
+
+
+https://www-garshol-priv-no.translate.goog/download/text/http-tut.html?_x_tr_sl=auto&_x_tr_tl=sk&_x_tr_hl=cs&_x_tr_pto=wapp
