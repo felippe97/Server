@@ -41,7 +41,7 @@ class Worker extends Thread {
 
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
-
+		
 			if (!clientRequest.startsWith("GET") || clientRequest.length() < 14
 					|| !(clientRequest.endsWith("HTTP/1.0") || clientRequest.endsWith("HTTP/1.1"))) {
 				// zlá požiadavka
@@ -71,19 +71,18 @@ class Worker extends Thread {
 					}
 					// Handle požiadavky
 					if (req.indexOf(".") > -1) { // Žiadosť o jeden súbor
-						if (req.indexOf(".fake-cgi") > -1) { // CGI žiadosť Common Gateway Interface
 
-							// handleCGIRequest(req, printer);
-						} else { // Žiadosť o jeden súbor
-							if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
+						// handleCGIRequest(req, printer);
+					} else { 
+						
+						// Žiadosť o jeden súbor
+						if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
 
-							}
-							handleFileRequest(req, printer);
 						}
-					} else { // Žiadosť o adresár
-
-						handleExploreRequest(req, printer);
+						handleFileRequest(req, printer);
 					}
+
+					handleExploreRequest(req, printer);
 				}
 			}
 
@@ -220,6 +219,11 @@ class Worker extends Thread {
 			printer.println(htmlHeader);
 			printer.println(htmlPage);
 		}
+	}
+
+	private String buildRow(String string, Map<String, Object> context) {
+
+		return null;
 	}
 
 	/**

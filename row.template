@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>table ${wdth:50%}</style>
+<title> Web</title>
+</head>
+<body>
+<h1>      </h1>
+<h1>File Explorer in Web Server </h1>
+<hr>
+<p> </p>
+
 <table>
 <tr>
 <th>Name</th>
@@ -23,3 +35,5 @@
 <td></td>
 <td></td>
 </tr>
+</bodt>
+</html>
