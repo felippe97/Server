@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.ProcessBuilder.Redirect;
 import java.net.Socket;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
@@ -41,7 +42,9 @@ class Worker extends Thread {
 
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
-		
+		if (clientRequest.endsWith(".jpg")) {
+			
+		}
 			if (!clientRequest.startsWith("GET") || clientRequest.length() < 14
 					|| !(clientRequest.endsWith("HTTP/1.0") || clientRequest.endsWith("HTTP/1.1"))) {
 				// zlá požiadavka
@@ -96,6 +99,7 @@ class Worker extends Thread {
 	/**
 	 * Spracovanie žiadosti o jeden súbor req, získajte požiadavku od klienta
 	 * tlačiareň, výstupná tlačiareň "/does-not-exist.png"
+	 * 
 	 */
 	private void handleFileRequest(String req, PrintStream printer) throws FileNotFoundException, IOException {
 		// Získajte koreňový priečinok webového servera
@@ -109,8 +113,10 @@ class Worker extends Thread {
 			if (req.startsWith("/images/")) {
 				path = Paths.get(rootDir, "/does-not-exist.png").toString();
 				file = new File(path);
-			} else {
-				path = null;
+			} else if (req.endsWith(".jpg")) {
+				path = Paths.get(rootDir, "/images/default.png").toString();
+				file = new File(path);
+				log.info("redirect 301");
 			}
 		}
 
