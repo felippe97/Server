@@ -42,9 +42,7 @@ class Worker extends Thread {
 
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
-		if (clientRequest.endsWith(".jpg")) {
-			
-		}
+		
 			if (!clientRequest.startsWith("GET") || clientRequest.length() < 14
 					|| !(clientRequest.endsWith("HTTP/1.0") || clientRequest.endsWith("HTTP/1.1"))) {
 				// zlá požiadavka
@@ -113,10 +111,10 @@ class Worker extends Thread {
 			if (req.startsWith("/images/")) {
 				path = Paths.get(rootDir, "/does-not-exist.png").toString();
 				file = new File(path);
-			} else if (req.endsWith(".jpg")) {
+			} else {/*if (req.endsWith(".jpg")) {
 				path = Paths.get(rootDir, "/images/default.png").toString();
 				file = new File(path);
-				log.info("redirect 301");
+				log.info("redirect");*/
 			}
 		}
 
@@ -173,10 +171,11 @@ class Worker extends Thread {
 
 			// Nadradený priečinok, zobrazi ho, ak aktuálny adresár nie je root
 			if (!path.equals(rootDir)) {
-				Map<String, Object> context = new HashMap<>();
-				context.put("imageLink", "sdkfjfj");
-				context.put("parent", "parent");
-				String row = buildRow("row.template", context);
+				/*
+				 * Map<String, Object> context = new HashMap<>(); context.put("imageLink",
+				 * "sdkfjfj"); context.put("parent", "parent"); String row =
+				 * buildRow("row.template", context);
+				 */
 				String parent = path.substring(0, path.lastIndexOf(File.separator));
 				if (parent.equals(rootDir)) { // Prvý level
 					parent = "../";
@@ -197,14 +196,21 @@ class Worker extends Thread {
 			// Vytvori riadky pre directory
 			List<File> folders = getFileByType(files, true);
 			for (File folder : folders) {
+				Map<String,Object> context = new HashMap<>();
+				context.put("name", folder.getName());
+				context.put("size", folder.length());
+				context.put("link", folder.getPath());
+				context.put("modified", folder.lastModified());
+			//	context.put("date", folder.getFormattedDate);
+				sbDirHtml.append(mergeTemplate("row.template", context));
 
-				sbDirHtml.append("<tr>");
-				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/file.png")
-						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, folder.getName()) + "\">"
-						+ folder.getName() + "</a></td>");
-				sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
-				sbDirHtml.append("  <td></td>");
-				sbDirHtml.append("</tr>");
+//				sbDirHtml.append("<tr>");
+//				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/file.png")
+//						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, folder.getName()) + "\">"
+//						+ folder.getName() + "</a></td>");
+//				sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
+//				sbDirHtml.append("  <td></td>");
+//				sbDirHtml.append("</tr>");
 			}
 			// Vytvori riadky pre súbory
 			List<File> fileList = getFileByType(files, false);
@@ -227,9 +233,12 @@ class Worker extends Thread {
 		}
 	}
 
-	private String buildRow(String string, Map<String, Object> context) {
-
-		return null;
+	
+	private Object mergeTemplate(String string, Map<String, Object> context) {
+	mergeTemplate("name", context);
+	mergeTemplate("size", context);
+	mergeTemplate("link", context);
+		return context ;
 	}
 
 	/**
@@ -251,26 +260,33 @@ class Worker extends Thread {
 	 */
 	private String buildHtmlPage(String content, String header) {
 		StringBuilder sbHtml = new StringBuilder();
-		sbHtml.append("<!DOCTYPE html>");
-		sbHtml.append("<html>");
-		sbHtml.append("<head>");
-		sbHtml.append("<style>");
-		sbHtml.append(" table { width:50%; } ");
-		sbHtml.append(" th, td { padding: 3px; text-align: left; }");
-		sbHtml.append("</style>");
-		sbHtml.append("<title> Web </title>");
-		sbHtml.append("</head>");
-		sbHtml.append("<body>");
+		Map<String,Object> context = new HashMap<>();
+		
+		context.put("size", content.length());
+		context.put("align", content.toString());
+		context.put("pending", content.length());
+		context.put("title", content.toString());
+		sbHtml.append(mergeTemplate("rowHeader.template", context));
+		/*
+		 * sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
+		 * sbHtml.append("<head>"); sbHtml.append("<style>");
+		 * sbHtml.append(" table { width:50%; } ");
+		 * sbHtml.append(" th, td { padding: 3px; text-align: left; }");
+		 * sbHtml.append("</style>"); sbHtml.append("<title> Web </title>");
+		 * sbHtml.append("</head>"); sbHtml.append("<body>");
+		 */
 		if (header != null && !header.isEmpty()) {
 			sbHtml.append("<h1>" + header + "</h1>");
 		} else {
 			sbHtml.append("<h1>File Explorer in Web Server </h1>");
 		}
-		sbHtml.append(content);
-		sbHtml.append("<hr>");
-		sbHtml.append("<p> </p>");
-		sbHtml.append("</body>");
-		sbHtml.append("</html>");
+	
+		
+		
+		/*
+		 * sbHtml.append(content); sbHtml.append("<hr>"); sbHtml.append("<p> </p>");
+		 * sbHtml.append("</body>"); sbHtml.append("</html>");
+		 */
 		return sbHtml.toString();
 	}
 

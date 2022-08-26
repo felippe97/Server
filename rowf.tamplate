@@ -1,0 +1,7 @@
+<tr>
+<td><img src=\"" + buildImageLink(request, getFileImage(f.getName()))
+						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, f.getName()) + "\">"
+						+ f.getName() + "</a></td>");
+				sbDirHtml.append("  <td>" + getFormattedDate(f.lastModified()) + "</td>");
+				sbDirHtml.append("  <td>" + f.length() + "</td>");
+				sbDirHtml.append("</tr>");

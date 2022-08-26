@@ -1,0 +1,11 @@
+<!DOCTYPE html> sbHtml.append<html>
+<head> <style>
+table { width:50%; } 
+	<th> <td> ${ padding: 3px} ${text-align: left} }
+</style> <title> ${title: Web} </title>
+</head> <body>
+
+<hr>
+<p> </p>
+</body>
+</html>

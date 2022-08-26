@@ -1,39 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>table ${wdth:50%}</style>
-<title> Web</title>
-</head>
-<body>
-<h1>      </h1>
-<h1>File Explorer in Web Server </h1>
-<hr>
-<p> </p>
-
-<table>
-<tr>
-<th>Name</th>
-<th>Last Modified</th>
-<th>Size </th>
-</tr>
-
 
 <tr>
-<td><img scr=${images} ${images/xfile.png} wight=${30}></img><a href=${parent}></a></td>
-<td></td>
- <td></td>
-</tr>
-
-<tr>
-<td><img scr=${images} ${images/file.png} wight=${20}></img><a href=\  \></a></td>
-<td></td>
+<td><img scr=${images} ${link:images/file.png} wight=20></img><a href=\  \></a></td>
+<td> ${modified:lastModified}</td>
 <td></td>
 </tr>
 
-<tr>
-<td><img scr=${images} weight=${20} herf=\  \></a></td>
-<td></td>
-<td></td>
-</tr>
-</bodt>
-</html>
