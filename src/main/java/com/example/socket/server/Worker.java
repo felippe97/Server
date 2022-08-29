@@ -238,6 +238,10 @@ class Worker extends Thread {
 	mergeTemplate("name", context);
 	mergeTemplate("size", context);
 	mergeTemplate("link", context);
+		mergeTemplate("modified", context);
+		mergeTemplate("title", context);
+		mergeTemplate("pending", context);
+		mergeTemplate("title", context);
 		return context ;
 	}
 
