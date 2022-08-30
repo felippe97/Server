@@ -245,6 +245,11 @@ class Worker extends Thread {
 	}
 
 	
+	private Object mergeTemplate(String string, Map<String, Object> context) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*
 	 * private Object mergeTemplate(String string, Map<String, Object> context) { if
 	 * (context == null) { context = new HashMap<String, Object>(); }if (context
