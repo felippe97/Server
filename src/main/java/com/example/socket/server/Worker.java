@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.lang.ProcessBuilder.Redirect;
 import java.net.Socket;
 import java.net.URLDecoder;
@@ -19,6 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.VelocityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,6 +97,9 @@ class Worker extends Thread {
 		} catch (IOException ex) {
 			// Výnimka
 			System.out.println(ex);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -138,8 +147,9 @@ class Worker extends Thread {
 	/**
 	 * Spracovanie žiadosti o preskúmanie súborov a adresárov req, získajte
 	 * požiadavku od klienta printer, výstupná printer
+	 * @throws Exception 
 	 */
-	private void handleExploreRequest(String request, PrintStream printer) {
+	private void handleExploreRequest(String request, PrintStream printer) throws Exception {
 		// Získa koreňový priečinok webserver
 		String rootDir = getRootFolder();
 		// Získa skutočnú cestu k súboru
@@ -197,13 +207,14 @@ class Worker extends Thread {
 			List<File> folders = getFileByType(files, true);
 			for (File folder : folders) {
 				Map<String,Object> context = new HashMap<>();
+				
 				context.put("name", folder.getName());
 				context.put("size", folder.length());
 				context.put("link", folder.getPath());
 				context.put("modified", folder.lastModified());
 			//	context.put("date", folder.getFormattedDate);
 				sbDirHtml.append(mergeTemplate("row.template", context));
-
+				
 //				sbDirHtml.append("<tr>");
 //				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/file.png")
 //						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, folder.getName()) + "\">"
@@ -234,13 +245,15 @@ class Worker extends Thread {
 	}
 
 	
-	private Object mergeTemplate(String string, Map<String, Object> context) {
-	mergeTemplate("name", context);
-	mergeTemplate("size", context);
-	mergeTemplate("link", context);
-		return context ;
-	}
-
+	/*
+	 * private Object mergeTemplate(String string, Map<String, Object> context) { if
+	 * (context == null) { context = new HashMap<String, Object>(); }if (context
+	 * instanceof HashMap) { HashMap<String, Object> hashProps = (HashMap<String,
+	 * Object>) context;
+	 * 
+	 * 
+	 * } return context; }
+	 */
 	/**
 	 * Vytvori http header cesta k request dĺžka obsahu vrati header text
 	 */
@@ -257,8 +270,9 @@ class Worker extends Thread {
 
 	/**
 	 * Vytvori http page obsah stránky header1, h1 content return page text
+	 * @throws Exception 
 	 */
-	private String buildHtmlPage(String content, String header) {
+	private String buildHtmlPage(String content, String header) throws Exception {
 		StringBuilder sbHtml = new StringBuilder();
 		Map<String,Object> context = new HashMap<>();
 		
@@ -267,6 +281,8 @@ class Worker extends Thread {
 		context.put("pending", content.length());
 		context.put("title", content.toString());
 		sbHtml.append(mergeTemplate("rowHeader.template", context));
+		
+		
 		/*
 		 * sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
 		 * sbHtml.append("<head>"); sbHtml.append("<style>");
