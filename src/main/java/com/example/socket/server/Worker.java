@@ -245,11 +245,22 @@ class Worker extends Thread {
 	}
 
 	private Object mergeTemplate(String string, Map<String, Object> context) {
+<<<<<<< HEAD
 
 		Template template = new Template();
 
 
 		return context;
+=======
+	mergeTemplate("name", context);
+	mergeTemplate("size", context);
+	mergeTemplate("link", context);
+		mergeTemplate("modified", context);
+		mergeTemplate("title", context);
+		mergeTemplate("pending", context);
+		mergeTemplate("title", context);
+		return context ;
+>>>>>>> eb83f490878ea56d045df1a7646e37d1a8703dc2
 	}
 
 	/**
