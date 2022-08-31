@@ -6,10 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.StringWriter;
+
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.lang.ProcessBuilder.Redirect;
+
 import java.net.Socket;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
@@ -20,13 +19,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.exception.VelocityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.core.Context;
 
 class Worker extends Thread {
 	private static final Logger log = LoggerFactory.getLogger(Worker.class);
@@ -48,7 +47,7 @@ class Worker extends Thread {
 
 			// Výstupný tok na klienta
 			PrintStream printer = new PrintStream(socket.getOutputStream());
-		
+
 			if (!clientRequest.startsWith("GET") || clientRequest.length() < 14
 					|| !(clientRequest.endsWith("HTTP/1.0") || clientRequest.endsWith("HTTP/1.1"))) {
 				// zlá požiadavka
@@ -80,8 +79,8 @@ class Worker extends Thread {
 					if (req.indexOf(".") > -1) { // Žiadosť o jeden súbor
 
 						// handleCGIRequest(req, printer);
-					} else { 
-						
+					} else {
+
 						// Žiadosť o jeden súbor
 						if (!req.startsWith("/images/") && !req.startsWith("/favicon.ico")) {
 
@@ -120,10 +119,11 @@ class Worker extends Thread {
 			if (req.startsWith("/images/")) {
 				path = Paths.get(rootDir, "/does-not-exist.png").toString();
 				file = new File(path);
-			} else {/*if (req.endsWith(".jpg")) {
-				path = Paths.get(rootDir, "/images/default.png").toString();
-				file = new File(path);
-				log.info("redirect");*/
+			} else {/*
+					 * if (req.endsWith(".jpg")) { path = Paths.get(rootDir,
+					 * "/images/default.png").toString(); file = new File(path);
+					 * log.info("redirect");
+					 */
 			}
 		}
 
@@ -147,7 +147,8 @@ class Worker extends Thread {
 	/**
 	 * Spracovanie žiadosti o preskúmanie súborov a adresárov req, získajte
 	 * požiadavku od klienta printer, výstupná printer
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	private void handleExploreRequest(String request, PrintStream printer) throws Exception {
 		// Získa koreňový priečinok webserver
@@ -206,15 +207,14 @@ class Worker extends Thread {
 			// Vytvori riadky pre directory
 			List<File> folders = getFileByType(files, true);
 			for (File folder : folders) {
-				Map<String,Object> context = new HashMap<>();
-				
+				Map<String, Object> context = new HashMap<>();
+
 				context.put("name", folder.getName());
 				context.put("size", folder.length());
 				context.put("link", folder.getPath());
 				context.put("modified", folder.lastModified());
-			//	context.put("date", folder.getFormattedDate);
 				sbDirHtml.append(mergeTemplate("row.template", context));
-				
+
 //				sbDirHtml.append("<tr>");
 //				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/file.png")
 //						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, folder.getName()) + "\">"
@@ -244,21 +244,14 @@ class Worker extends Thread {
 		}
 	}
 
-	
 	private Object mergeTemplate(String string, Map<String, Object> context) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Template template = new Template();
+
+
+		return context;
 	}
 
-	/*
-	 * private Object mergeTemplate(String string, Map<String, Object> context) { if
-	 * (context == null) { context = new HashMap<String, Object>(); }if (context
-	 * instanceof HashMap) { HashMap<String, Object> hashProps = (HashMap<String,
-	 * Object>) context;
-	 * 
-	 * 
-	 * } return context; }
-	 */
 	/**
 	 * Vytvori http header cesta k request dĺžka obsahu vrati header text
 	 */
@@ -275,19 +268,19 @@ class Worker extends Thread {
 
 	/**
 	 * Vytvori http page obsah stránky header1, h1 content return page text
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	private String buildHtmlPage(String content, String header) throws Exception {
 		StringBuilder sbHtml = new StringBuilder();
-		Map<String,Object> context = new HashMap<>();
-		
+		Map<String, Object> context = new HashMap<>();
+
 		context.put("size", content.length());
 		context.put("align", content.toString());
 		context.put("pending", content.length());
 		context.put("title", content.toString());
 		sbHtml.append(mergeTemplate("rowHeader.template", context));
-		
-		
+
 		/*
 		 * sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
 		 * sbHtml.append("<head>"); sbHtml.append("<style>");
@@ -301,9 +294,7 @@ class Worker extends Thread {
 		} else {
 			sbHtml.append("<h1>File Explorer in Web Server </h1>");
 		}
-	
-		
-		
+
 		/*
 		 * sbHtml.append(content); sbHtml.append("<hr>"); sbHtml.append("<p> </p>");
 		 * sbHtml.append("</body>"); sbHtml.append("</html>");

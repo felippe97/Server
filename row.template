@@ -1,16 +1,10 @@
-#macr
+
 <tr>
 
-<td><img src=\ #set ($link = "images/file.png")
+<td><img src=\  {$link = "images/file.png"}
  \ #set ($size = 20)></img>
- <a href=\"" #set ($name = folder.getName())  \>
+ <a href=\""  {$name = folder.getName()} \>
  </a></td>
-<td> #set ($modified = folder.lastModified()) </td>
+<td> {$modified = folder.lastModified()} </td>
  <td></td>
 </tr>
-#end
-#end
-#end
-#end
-#end
-#end
