@@ -1,8 +1,10 @@
 package com.example.socket.server;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -17,9 +19,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.crypto.Data;
 
 import org.apache.velocity.Template;
 import org.slf4j.Logger;
@@ -215,11 +222,9 @@ class Worker extends Thread {
 				context.put("modified", folder.lastModified());
 				sbDirHtml.append(mergeTemplate("row.template", context));
 
-//				sbDirHtml.append("<tr>");
 //				sbDirHtml.append("  <td><img src=\"" + buildImageLink(request, "images/file.png")
 //						+ "\" width=\"20\"></img><a href=\"" + buildRelativeLink(request, folder.getName()) + "\">"
 //						+ folder.getName() + "</a></td>");
-//				sbDirHtml.append("  <td>" + getFormattedDate(folder.lastModified()) + "</td>");
 //				sbDirHtml.append("  <td></td>");
 //				sbDirHtml.append("</tr>");
 			}
@@ -244,12 +249,27 @@ class Worker extends Thread {
 		}
 	}
 
-	private Object mergeTemplate(String string, Map<String, Object> context) {
+	
+	//	Pattern, Matcher
+	private Object mergeTemplate(String string, Map<String, Object> context) throws IOException {
+		File file = new File("");
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+		String line = null;
+		StringBuilder stringBuilder = new StringBuilder();
+	
+		{
+			
+				while ((line = bufferedReader.readLine()) != null) {
+					stringBuilder.append(line);
+					
+				}
+				return stringBuilder.toString();
+			
+		
+		}
+		
+		
 
-		Template template = new Template();
-
-
-		return context;
 	}
 
 	/**
@@ -295,10 +315,10 @@ class Worker extends Thread {
 			sbHtml.append("<h1>File Explorer in Web Server </h1>");
 		}
 
-		/*
-		 * sbHtml.append(content); sbHtml.append("<hr>"); sbHtml.append("<p> </p>");
-		 * sbHtml.append("</body>"); sbHtml.append("</html>");
-		 */
+		
+		  sbHtml.append(content); sbHtml.append("<hr>"); sbHtml.append("<p> </p>");
+		  sbHtml.append("</body>"); sbHtml.append("</html>");
+		 
 		return sbHtml.toString();
 	}
 
