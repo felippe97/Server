@@ -26,6 +26,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.crypto.Mac;
 import javax.xml.crypto.Data;
 
 import org.apache.velocity.Template;
@@ -260,13 +261,20 @@ class Worker extends Thread {
 		{
 			
 				while ((line = bufferedReader.readLine()) != null) {
+					
 					stringBuilder.append(line);
 					
 				}
-				return stringBuilder.toString();
-			
+				Pattern patern = Pattern.compile(line);
+			Matcher matcher = patern.matcher(string);
+			while (matcher.find()) {
+				String group = matcher.group();
+				
+			}
 		
 		}
+		return string;
+		
 		
 		
 
@@ -328,20 +336,17 @@ class Worker extends Thread {
 	 */
 	private String buildErrorPage(String code, String title, String msg) {
 		StringBuilder sbHtml = new StringBuilder();
-		sbHtml.append("HTTP/1.1 " + code + " " + title + "\r\n\r\n");
-		sbHtml.append("<!DOCTYPE html>");
-		sbHtml.append("<html>");
-		sbHtml.append("<head>");
-		sbHtml.append("<title>" + code + " " + title + "</title>");
-		sbHtml.append("</head>");
-		sbHtml.append("<body>");
-
-		sbHtml.append("<h1>" + code + " " + title + "</h1>");
-		sbHtml.append("<p>" + msg + "</p>");
-		sbHtml.append("<hr>");
-		sbHtml.append("<p>*This page is returned by Web Server.</p>");
-		sbHtml.append("</body>");
-		sbHtml.append("</html>");
+		
+		  sbHtml.append("HTTP/1.1 " + code + " " + title + "\r\n\r\n");
+		  sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
+		  sbHtml.append("<head>"); sbHtml.append("<title>" + code + " " + title +
+		  "</title>"); sbHtml.append("</head>"); sbHtml.append("<body>");
+		  
+		  sbHtml.append("<h1>" + code + " " + title + "</h1>"); sbHtml.append("<p>" +
+		  msg + "</p>"); sbHtml.append("<hr>");
+		  sbHtml.append("<p>*This page is returned by Web Server.</p>");
+		  sbHtml.append("</body>"); sbHtml.append("</html>");
+		 
 		return sbHtml.toString();
 	}
 
