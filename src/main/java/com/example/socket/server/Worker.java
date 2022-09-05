@@ -270,10 +270,14 @@ class Worker extends Thread {
 			while (matcher.find()) {
 				String group = matcher.group();
 				
+				return group;
 			}
-		
+			
+			
 		}
-		return string;
+		return line;
+		
+		
 		
 		
 		
