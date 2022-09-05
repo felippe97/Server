@@ -255,7 +255,7 @@ class Worker extends Thread {
 	private Object mergeTemplate(String string, Map<String, Object> context) throws IOException {
 		File file = new File("");
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-		String line = null;
+		String line;
 		StringBuilder stringBuilder = new StringBuilder();
 	
 		{
