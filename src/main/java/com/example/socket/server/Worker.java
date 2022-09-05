@@ -251,37 +251,28 @@ class Worker extends Thread {
 		}
 	}
 
-	
-	//	Pattern, Matcher
+	// Pattern, Matcher
 	private Object mergeTemplate(String string, Map<String, Object> context) throws IOException {
 		File file = new File("row.tamplate");
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		String line;
 		StringBuilder stringBuilder = new StringBuilder();
-	
+
 		{
-			
-				while ((line = bufferedReader.readLine()) != null) {
-					
-					stringBuilder.append(line);
-					
-				}
-				Pattern patern = Pattern.compile(line);
+			while ((line = bufferedReader.readLine()) != null) {
+
+				stringBuilder.append(line);
+
+			}
+			Pattern patern = Pattern.compile(line);
 			Matcher matcher = patern.matcher(string);
 			while (matcher.find()) {
 				String group = matcher.group();
-				
+
 				return group;
 			}
-
 		}
 		return line;
-		
-		
-		
-		
-		
-
 	}
 
 	/**
@@ -314,24 +305,29 @@ class Worker extends Thread {
 		 * sbHtml.append(mergeTemplate("rowHeader.template", context));
 		 */
 
-		
-		  sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
-		  sbHtml.append("<head>"); sbHtml.append("<style>");
-		  sbHtml.append(" table { width:50%; } ");
-		  sbHtml.append(" th, td { padding: 3px; text-align: left; }");
-		  sbHtml.append("</style>"); sbHtml.append("<title> Web </title>");
-		  sbHtml.append("</head>"); sbHtml.append("<body>");
-		 
+		sbHtml.append("<!DOCTYPE html>");
+		sbHtml.append("<html>");
+		sbHtml.append("<head>");
+		sbHtml.append("<style>");
+		sbHtml.append(" table { width:50%; } ");
+		sbHtml.append(" th, td { padding: 3px; text-align: left; }");
+		sbHtml.append("</style>");
+		sbHtml.append("<title> Web </title>");
+		sbHtml.append("</head>");
+		sbHtml.append("<body>");
+
 		if (header != null && !header.isEmpty()) {
 			sbHtml.append("<h1>" + header + "</h1>");
 		} else {
 			sbHtml.append("<h1>File Explorer in Web Server </h1>");
 		}
 
-		
-		  sbHtml.append(content); sbHtml.append("<hr>"); sbHtml.append("<p> </p>");
-		  sbHtml.append("</body>"); sbHtml.append("</html>");
-		 
+		sbHtml.append(content);
+		sbHtml.append("<hr>");
+		sbHtml.append("<p> </p>");
+		sbHtml.append("</body>");
+		sbHtml.append("</html>");
+
 		return sbHtml.toString();
 	}
 
@@ -341,17 +337,22 @@ class Worker extends Thread {
 	 */
 	private String buildErrorPage(String code, String title, String msg) {
 		StringBuilder sbHtml = new StringBuilder();
-		
-		  sbHtml.append("HTTP/1.1 " + code + " " + title + "\r\n\r\n");
-		  sbHtml.append("<!DOCTYPE html>"); sbHtml.append("<html>");
-		  sbHtml.append("<head>"); sbHtml.append("<title>" + code + " " + title +
-		  "</title>"); sbHtml.append("</head>"); sbHtml.append("<body>");
-		  
-		  sbHtml.append("<h1>" + code + " " + title + "</h1>"); sbHtml.append("<p>" +
-		  msg + "</p>"); sbHtml.append("<hr>");
-		  sbHtml.append("<p>*This page is returned by Web Server.</p>");
-		  sbHtml.append("</body>"); sbHtml.append("</html>");
-		 
+
+		sbHtml.append("HTTP/1.1 " + code + " " + title + "\r\n\r\n");
+		sbHtml.append("<!DOCTYPE html>");
+		sbHtml.append("<html>");
+		sbHtml.append("<head>");
+		sbHtml.append("<title>" + code + " " + title + "</title>");
+		sbHtml.append("</head>");
+		sbHtml.append("<body>");
+
+		sbHtml.append("<h1>" + code + " " + title + "</h1>");
+		sbHtml.append("<p>" + msg + "</p>");
+		sbHtml.append("<hr>");
+		sbHtml.append("<p>*This page is returned by Web Server.</p>");
+		sbHtml.append("</body>");
+		sbHtml.append("</html>");
+
 		return sbHtml.toString();
 	}
 
